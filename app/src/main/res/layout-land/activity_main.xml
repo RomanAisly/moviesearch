@@ -9,10 +9,10 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/corner_background"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         app:cardCornerRadius="15dp"
         android:elevation="6dp"
         android:layout_margin="10dp"
@@ -75,7 +75,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="150dp"
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -83,7 +83,7 @@
                 android:id="@+id/img_cap_amer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.4"
+                android:layout_weight="5"
                 android:scaleType="centerCrop"
                 android:src="@drawable/civil_war_captain_america" />
 
@@ -91,7 +91,7 @@
                 android:id="@+id/img_anyadams"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.4"
+                android:layout_weight="5"
                 android:scaleType="centerCrop"
                 android:src="@drawable/amyadams" />
 
@@ -99,7 +99,7 @@
                 android:id="@+id/img_avatar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.9"
+                android:layout_weight="1"
                 android:scaleType="centerCrop"
                 android:src="@drawable/avatar" />
 
@@ -107,7 +107,7 @@
                 android:id="@+id/img_xman"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="5.4"
                 android:scaleType="centerCrop"
                 android:src="@drawable/x_men" />
 
@@ -119,7 +119,7 @@
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="50dp"
         android:background="#ECD510"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +132,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:text="@string/source_of_posters"
         android:autoLink="web"
