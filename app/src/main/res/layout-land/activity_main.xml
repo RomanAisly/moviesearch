@@ -19,11 +19,10 @@
         app:layout_constraintTop_toBottomOf="@+id/top_bar">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?selectableItemBackgroundBorderless"
-            android:onClick="butMenuOn"
             android:text="@string/menu"
             android:textColor="@android:color/white" />
 
@@ -32,7 +31,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?selectableItemBackgroundBorderless"
-            android:onClick="butFavoritesOn"
             android:text="@string/favorites"
             android:textColor="@android:color/white" />
 
@@ -41,7 +39,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?selectableItemBackgroundBorderless"
-            android:onClick="butWatchLaterOn"
             android:text="@string/watch_later"
             android:textColor="@android:color/white" />
 
@@ -50,7 +47,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?selectableItemBackgroundBorderless"
-            android:onClick="butSelectionsOn"
             android:text="@string/selections"
             android:textColor="@android:color/white" />
 
@@ -59,7 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?selectableItemBackgroundBorderless"
-            android:onClick="butSettingsOn"
             android:text="@string/settings"
             android:textColor="@android:color/white" />
     </LinearLayout>

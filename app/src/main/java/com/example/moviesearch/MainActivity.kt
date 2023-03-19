@@ -1,29 +1,39 @@
 package com.example.moviesearch
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.moviesearch.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    fun butMenuOn(view: View) {
-        Toast.makeText(this, "Меню", Toast.LENGTH_SHORT).show()
-    }
-    fun butFavoritesOn(view: View) {
-        Toast.makeText(this, "Избраное", Toast.LENGTH_SHORT).show()
-    }
-    fun butWatchLaterOn(view: View) {
-        Toast.makeText(this, "Посмотреть позже", Toast.LENGTH_SHORT).show()
-    }
-    fun butSelectionsOn(view: View) {
-        Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
-    }
-    fun butSettingsOn(view: View) {
-        Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
+
+        binding.button1.setOnClickListener {
+            Toast.makeText(this, "Меню", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.button2.setOnClickListener {
+            Toast.makeText(this, "Избраное", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.button3.setOnClickListener {
+            Toast.makeText(this, "Посмотреть позже", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.button4.setOnClickListener {
+            Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.button5.setOnClickListener {
+            Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
+        }
+
     }
 }
