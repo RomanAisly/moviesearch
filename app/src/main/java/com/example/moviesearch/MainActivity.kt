@@ -14,25 +14,24 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.button1.setOnClickListener {
-            Toast.makeText(this, "Меню", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_menu), Toast.LENGTH_SHORT).show()
         }
 
         binding.button2.setOnClickListener {
-            Toast.makeText(this, "Избраное", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_favorites), Toast.LENGTH_SHORT).show()
         }
 
         binding.button3.setOnClickListener {
-            Toast.makeText(this, "Посмотреть позже", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_watch_later), Toast.LENGTH_SHORT).show()
         }
 
         binding.button4.setOnClickListener {
-            Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_selections), Toast.LENGTH_SHORT).show()
         }
 
         binding.button5.setOnClickListener {
-            Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_settings), Toast.LENGTH_SHORT).show()
         }
 
     }
