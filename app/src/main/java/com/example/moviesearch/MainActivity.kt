@@ -14,6 +14,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initButtons()
+    }
+
+    private fun initButtons() {
         binding.button1.setOnClickListener {
             Toast.makeText(this, getString(R.string.toast_menu), Toast.LENGTH_SHORT).show()
         }
@@ -33,6 +37,5 @@ class MainActivity : AppCompatActivity() {
         binding.button5.setOnClickListener {
             Toast.makeText(this, getString(R.string.toast_settings), Toast.LENGTH_SHORT).show()
         }
-
     }
 }
