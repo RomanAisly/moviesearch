@@ -14,28 +14,37 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initButtons()
+        initNavigation()
     }
 
-    private fun initButtons() {
-        binding.button1.setOnClickListener {
-            Toast.makeText(this, getString(R.string.toast_menu), Toast.LENGTH_SHORT).show()
+    private fun initNavigation() {
+        binding.topAppBar?.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.settings -> {
+                    Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
         }
 
-        binding.button2.setOnClickListener {
-            Toast.makeText(this, getString(R.string.toast_favorites), Toast.LENGTH_SHORT).show()
+        binding.bottomNavig?.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.favorites -> {
+                    Toast.makeText(this, "Favorites", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.watch_later -> {
+                    Toast.makeText(this, "Watch later", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.selections -> {
+                    Toast.makeText(this, "Selections", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
         }
 
-        binding.button3.setOnClickListener {
-            Toast.makeText(this, getString(R.string.toast_watch_later), Toast.LENGTH_SHORT).show()
-        }
-
-        binding.button4.setOnClickListener {
-            Toast.makeText(this, getString(R.string.toast_selections), Toast.LENGTH_SHORT).show()
-        }
-
-        binding.button5.setOnClickListener {
-            Toast.makeText(this, getString(R.string.toast_settings), Toast.LENGTH_SHORT).show()
-        }
     }
 }
