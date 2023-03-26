@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.bottomNavig.setOnNavigationItemSelectedListener {
+        binding.bottomNavig.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.favorites -> {
                     Toast.makeText(this, getString(R.string.toast_favorites), Toast.LENGTH_SHORT).show()
