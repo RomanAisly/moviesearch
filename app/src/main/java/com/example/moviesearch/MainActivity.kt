@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding.topAppBar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.settings -> {
-                    Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.toast_settings), Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> false
@@ -31,15 +31,15 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavig?.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.favorites -> {
-                    Toast.makeText(this, "Favorites", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.toast_favorites), Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.watch_later -> {
-                    Toast.makeText(this, "Watch later", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.toast_watchlater), Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.selections -> {
-                    Toast.makeText(this, "Selections", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.toast_selections), Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> false
