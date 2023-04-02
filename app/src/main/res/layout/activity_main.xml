@@ -122,6 +122,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/poster_avengers"
             android:layout_width="170dp"
+            android:clickable="true"
+            android:stateListAnimator="@animator/press_poster"
             android:layout_height="220dp"
             app:cardCornerRadius="12dp">
 
@@ -136,6 +138,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/poster_star_wars"
             android:layout_width="170dp"
+            android:clickable="true"
+            android:stateListAnimator="@animator/press_poster"
             android:layout_height="220dp"
             app:cardCornerRadius="12dp">
 
@@ -150,6 +154,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/poster_lotr"
             android:layout_width="170dp"
+            android:clickable="true"
+            android:stateListAnimator="@animator/press_poster"
             android:layout_height="220dp"
             app:cardCornerRadius="12dp">
 
@@ -164,6 +170,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/poster_interstellar"
             android:layout_width="170dp"
+            android:clickable="true"
+            android:stateListAnimator="@animator/press_poster"
             android:layout_height="220dp"
             app:cardCornerRadius="12dp">
 
