@@ -11,5 +11,8 @@
     <string name="toast_favorites">Favorites</string>
     <string name="toast_watchlater">Watch later</string>
     <string name="toast_selections">Selections</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+
 
 </resources>

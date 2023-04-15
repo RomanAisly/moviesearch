@@ -12,5 +12,8 @@
     <string name="toast_favorites">Избранное</string>
     <string name="toast_watchlater">Смотреть позже</string>
     <string name="toast_selections">Подборки</string>
+    <string name="description">Описание</string>
+    <string name="title">Название</string>
+
 
 </resources>
