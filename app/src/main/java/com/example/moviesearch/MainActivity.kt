@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.example.moviesearch.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +22,10 @@ class MainActivity : AppCompatActivity() {
         initRecyclerView()
 
         filmsAdapter.addItems(filmsDataBase)
+
+        updateData(newList = ArrayList(filmsDataBase))
+
+
     }
 
     private fun initNavigation() {
@@ -122,4 +126,14 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(decorator)
         }
     }
+
+
+    private fun updateData(newList: ArrayList<Film>) {
+        val filmDiff = FilmDiff(oldList = ArrayList(filmsDataBase), newList)
+        val diffResult = DiffUtil.calculateDiff(filmDiff)
+        filmsAdapter.addItems(newList)
+        diffResult.dispatchUpdatesTo(filmsAdapter)
+    }
+
+
 }

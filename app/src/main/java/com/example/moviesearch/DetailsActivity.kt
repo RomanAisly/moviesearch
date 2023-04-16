@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import com.example.moviesearch.databinding.ActivityDetailsBinding
+import com.google.android.material.snackbar.Snackbar
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -18,5 +19,17 @@ class DetailsActivity : AppCompatActivity() {
         binding.detailsToolbar.title = film.title
         binding.detailsPoster.setImageResource(film.poster)
         binding.detailsDescription.text = film.description
+
+        val snack = Snackbar.make(binding.detailsFabFavorites, "Favorites", Snackbar.LENGTH_SHORT)
+        snack.setAction("Add to Favorites") {}
+
+        val snack2 = Snackbar.make(binding.detailsFabWatchlater, "Watch Later", Snackbar.LENGTH_SHORT)
+        snack2.setAction("Add to Watch Later") {}
+        binding.detailsFabFavorites.setOnClickListener {
+            snack.show()
+        }
+        binding.detailsFabWatchlater.setOnClickListener {
+            snack2.show()
+        }
     }
 }
