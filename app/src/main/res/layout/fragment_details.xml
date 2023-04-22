@@ -2,16 +2,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/main"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".DetailsActivity">
+    tools:context=".DetailsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:fitsSystemWindows="false"
+        android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -20,8 +19,7 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             android:minHeight="60dp"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:layout_scrollFlags="scroll"
             app:toolbarId="@+id/toolbar">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -30,13 +28,13 @@
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:background="@color/purple_500"
                 android:src="@drawable/ic_launcher_foreground"
                 app:layout_collapseMode="parallax" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/details_toolbar"
                 android:layout_width="match_parent"
+                app:titleTextColor="@color/white"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
@@ -50,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:backgroundTint="#F41B1B"
+        android:backgroundTint="#F3286D"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|center"
         app:srcCompat="@drawable/round_favorite"/>
@@ -59,7 +57,7 @@
         android:id="@+id/details_fab_watchlater"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal_200"
+        android:backgroundTint="#FBE946"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/round_watch_later"/>
@@ -72,8 +70,10 @@
         <TextView
             android:id="@+id/details_description"
             android:layout_width="wrap_content"
+            android:background="@color/white"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:textStyle="bold"
+            android:padding="4dp"
             tools:text="@string/description" />
 
     </androidx.core.widget.NestedScrollView>

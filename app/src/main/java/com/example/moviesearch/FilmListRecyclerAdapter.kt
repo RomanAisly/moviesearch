@@ -2,7 +2,6 @@ package com.example.moviesearch
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
