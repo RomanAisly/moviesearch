@@ -10,8 +10,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="9dp"
+        android:layout_height="80dp"
+        android:layout_margin="7dp"
         android:elevation="6dp"
         app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +20,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:orientation="horizontal">
 
@@ -29,8 +29,8 @@
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.4"
-                android:scaleType="centerCrop"
+                android:layout_weight="2.1"
+                android:scaleType="fitXY"
                 android:src="@drawable/civil_war_captain_america" />
 
             <ImageView
@@ -38,26 +38,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1.3"
-                android:scaleType="centerCrop"
+                android:layout_weight="2.2"
+                android:scaleType="fitXY"
                 android:src="@drawable/amyadams" />
 
             <ImageView
                 android:id="@+id/img_avatar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.9"
+                android:layout_weight="0.6"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@drawable/avatar" />
 
             <ImageView
                 android:id="@+id/img_xman"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="2.5"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@drawable/x_men" />
 
         </LinearLayout>
@@ -69,13 +69,13 @@
         android:id="@+id/pics_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:autoLink="web"
         android:text="@string/source_of_posters"
         android:textColor="@color/white"
         android:textColorLink="#1347E1"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top_bar" />
 

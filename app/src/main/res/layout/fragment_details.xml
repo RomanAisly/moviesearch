@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/frag_details_main"
     android:fitsSystemWindows="true"
     tools:context=".DetailsFragment">
 
@@ -10,7 +11,7 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:fitsSystemWindows="true"
+        android:fitsSystemWindows="false"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -19,7 +20,8 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             android:minHeight="60dp"
-            app:layout_scrollFlags="scroll"
+            android:minWidth="60dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -47,10 +49,10 @@
         android:id="@+id/details_fab_favorites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginEnd="70dp"
         android:backgroundTint="#F3286D"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|center"
+        app:layout_anchor="@id/details_description"
+        app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/round_favorite"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -58,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FBE946"
-        app:layout_anchor="@id/app_bar"
+        app:layout_anchor="@id/details_description"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/round_watch_later"/>
 

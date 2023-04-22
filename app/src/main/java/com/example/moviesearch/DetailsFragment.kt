@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.moviesearch.databinding.FragmentDetailsBinding
+import com.google.android.material.snackbar.Snackbar
 
 class DetailsFragment : Fragment() {
 
@@ -32,5 +33,17 @@ class DetailsFragment : Fragment() {
         binding.detailsPoster.setImageResource(film.poster)
         binding.detailsDescription.text = film.description
 
+        val snackFavorites = Snackbar.make(binding.detailsFabFavorites, getString(R.string.snack_favorites), Snackbar.LENGTH_SHORT)
+        snackFavorites.setAction(getString(R.string.snack_delete)) {}
+
+        val snackWatchLater = Snackbar.make(binding.detailsFabWatchlater, getString(R.string.snack_watch_later), Snackbar.LENGTH_SHORT)
+        snackWatchLater.setAction(getString(R.string.snack_delete)) {}
+
+        binding.detailsFabFavorites.setOnClickListener {
+            snackFavorites.show()
+        }
+        binding.detailsFabWatchlater.setOnClickListener {
+            snackWatchLater.show()
+        }
     }
 }

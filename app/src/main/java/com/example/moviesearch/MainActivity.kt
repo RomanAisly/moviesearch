@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.moviesearch.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val fragment = DetailsFragment()
         fragment.arguments = bundle
 
-        supportFragmentManager.beginTransaction().add(R.id.fragment_placeholder, fragment)
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_placeholder, fragment)
             .addToBackStack(null).commit()
     }
 
@@ -71,15 +70,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        AlertDialog.Builder(this)
-            .setTitle(getString(R.string.alertdialog_title))
-            .setIcon(android.R.drawable.presence_video_away)
-            .setPositiveButton(getString(R.string.alertdialog_positive)) { _, _ -> finish() }
-            .setNegativeButton(getString(R.string.alertdialog_negative)) { _, _ -> }
-            .show()
+            AlertDialog.Builder(this)
+                .setTitle(getString(R.string.alertdialog_title))
+                .setIcon(android.R.drawable.presence_video_away)
+                .setPositiveButton(getString(R.string.alertdialog_positive)) { _, _ -> finish() }
+                .setNegativeButton(getString(R.string.alertdialog_negative)) { _, _ -> }
+                .show()
+
 
     }
-
 
 
 }
