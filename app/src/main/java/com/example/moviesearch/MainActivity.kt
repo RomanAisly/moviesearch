@@ -69,15 +69,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        if (supportFragmentManager.backStackEntryCount == 1) {
             AlertDialog.Builder(this)
                 .setTitle(getString(R.string.alertdialog_title))
                 .setIcon(android.R.drawable.presence_video_away)
                 .setPositiveButton(getString(R.string.alertdialog_positive)) { _, _ -> finish() }
                 .setNegativeButton(getString(R.string.alertdialog_negative)) { _, _ -> }
                 .show()
+        } else {
+            super.onBackPressed()
 
-
+        }
     }
 
 
