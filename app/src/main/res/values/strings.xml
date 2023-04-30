@@ -11,5 +11,14 @@
     <string name="toast_favorites">Favorites</string>
     <string name="toast_watchlater">Watch later</string>
     <string name="toast_selections">Selections</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="alertdialog_title">Do you want to close App?</string>
+    <string name="alertdialog_positive">Yes</string>
+    <string name="alertdialog_negative">No</string>
+    <string name="snack_delete">Delete</string>
+    <string name="snack_favorites">Added to \"Favorites\"</string>
+    <string name="snack_watch_later">Added to \"Watch Later\"</string>
+
 
 </resources>

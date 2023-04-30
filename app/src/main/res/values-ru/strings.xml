@@ -12,5 +12,14 @@
     <string name="toast_favorites">Избранное</string>
     <string name="toast_watchlater">Смотреть позже</string>
     <string name="toast_selections">Подборки</string>
+    <string name="description">Описание</string>
+    <string name="title">Название</string>
+    <string name="alertdialog_title">Вы хотите закрыть приложение?</string>
+    <string name="alertdialog_positive">Да</string>
+    <string name="alertdialog_negative">Нет</string>
+    <string name="snack_delete">Удалить</string>
+    <string name="snack_favorites">Добавлено в \"Избранное\"</string>
+    <string name="snack_watch_later">Добавлено в \"Смотреть Позже\"</string>
+
 
 </resources>
