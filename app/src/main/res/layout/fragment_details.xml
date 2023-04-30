@@ -50,8 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:borderWidth="0dp"
-        android:tint="@color/white"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#F3417D"
         app:layout_anchor="@id/details_description"
         app:layout_anchorGravity="bottom|start"
         android:src="@drawable/ic_favorite_empty"/>
@@ -62,8 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:borderWidth="0dp"
-        android:tint="@color/white"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#3BC1FD"
         app:layout_anchor="@id/details_description"
         app:layout_anchorGravity="bottom|end"
         android:src="@drawable/ic_share"/>

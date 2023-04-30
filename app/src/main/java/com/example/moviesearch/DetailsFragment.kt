@@ -20,14 +20,24 @@ class DetailsFragment : Fragment() {
     ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         setFilmDetails()
 
         binding.detailsFabFavorites.setOnClickListener {
+            val snackFavorites = Snackbar.make(
+                binding.detailsFabFavorites,
+                getString(R.string.snack_favorites),
+                Snackbar.LENGTH_SHORT
+            )
+            snackFavorites.setAction(getString(R.string.snack_delete)) {}
+
+
             if (!film.isInFavorites) {
                 binding.detailsFabFavorites.setImageResource(R.drawable.ic_favorites_full)
                 film.isInFavorites = true
@@ -35,6 +45,8 @@ class DetailsFragment : Fragment() {
                 binding.detailsFabFavorites.setImageResource(R.drawable.ic_favorite_empty)
                 film.isInFavorites = false
             }
+            snackFavorites.show()
+
         }
         binding.detailsFabShare.setOnClickListener {
             val intent = Intent()
@@ -47,21 +59,13 @@ class DetailsFragment : Fragment() {
 
      private fun setFilmDetails() {
 
-        val film = arguments?.get("film") as Film
+        film = arguments?.get("film") as Film
 
         binding.detailsToolbar.title = film.title
         binding.detailsPoster.setImageResource(film.poster)
         binding.detailsDescription.text = film.description
 
-        val snackFavorites = Snackbar.make(
-            binding.detailsFabFavorites,
-            getString(R.string.snack_favorites),
-            Snackbar.LENGTH_SHORT
-        )
-        snackFavorites.setAction(getString(R.string.snack_delete)) {}
-        binding.detailsFabFavorites.setOnClickListener {
-            snackFavorites.show()
-        }
+
         binding.detailsFabFavorites.setImageResource(
             if (film.isInFavorites) {
                 R.drawable.ic_favorites_full
