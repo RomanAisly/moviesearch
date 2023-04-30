@@ -12,46 +12,7 @@ import com.example.moviesearch.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.mainRecycler.apply {
-            filmsAdapter =
-                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
-                    override fun click(film: Film) {
-                        (requireActivity() as MainActivity).launchDetailsFragment(film)
-                    }
-
-                })
-            adapter = filmsAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-            val decorator = TopSpacingItemDecoration(7)
-            addItemDecoration(decorator)
-        }
-        filmsAdapter.addItems(filmsDataBase)
-        updateData(newList = ArrayList(filmsDataBase))
-
-    }
-
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
-
-    private fun updateData(newList: ArrayList<Film>) {
-        val filmDiff = FilmDiff(oldList = ArrayList(filmsDataBase), newList)
-        val diffResult = DiffUtil.calculateDiff(filmDiff)
-        filmsAdapter.addItems(newList)
-        diffResult.dispatchUpdatesTo(filmsAdapter)
-    }
-
     private val filmsDataBase = listOf(
         Film(
             ("Agora"),
@@ -94,4 +55,39 @@ class HomeFragment : Fragment() {
             "The plot of the unique and visually innovative film centers on a teenager from New York City, Miles Morales, who lives in a world of limitless possibilities in the Spider-Man universes, where the superhero costume is worn not only by him"
         )
     )
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.mainRecycler.apply {
+            filmsAdapter =
+                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
+                    override fun click(film: Film) {
+                        (requireActivity() as MainActivity).launchDetailsFragment(film)
+                    }
+
+                })
+            adapter = filmsAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            val decorator = TopSpacingItemDecoration(7)
+            addItemDecoration(decorator)
+        }
+        filmsAdapter.addItems(filmsDataBase)
+        updateData(newList = ArrayList(filmsDataBase))
+
+    }
+
+    private fun updateData(newList: ArrayList<Film>) {
+        val filmDiff = FilmDiff(oldList = ArrayList(filmsDataBase), newList)
+        val diffResult = DiffUtil.calculateDiff(filmDiff)
+        filmsAdapter.addItems(newList)
+        diffResult.dispatchUpdatesTo(filmsAdapter)
+    }
 }

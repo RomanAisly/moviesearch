@@ -2,7 +2,8 @@ package com.example.moviesearch
 
 import androidx.recyclerview.widget.DiffUtil
 
-class FilmDiff(val oldList: ArrayList<Film>, val newList: ArrayList<Film>) : DiffUtil.Callback() {
+class FilmDiff(val oldList: ArrayList<Film>, val newList: ArrayList<Film>) :
+    DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
     }
@@ -18,6 +19,6 @@ class FilmDiff(val oldList: ArrayList<Film>, val newList: ArrayList<Film>) : Dif
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val old = oldList[oldItemPosition]
         val new = newList[newItemPosition]
-        return old.poster == new.poster && old.title == new.title && old.description == new.description
+        return old.poster == new.poster && old.title == new.title && old.description == new.description && old.isInFavorites == new.isInFavorites
     }
 }

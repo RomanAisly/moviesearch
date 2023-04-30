@@ -15,7 +15,7 @@
             android:id="@+id/poster"
             android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:src="@drawable/ic_launcher_foreground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +28,6 @@
             android:text="@string/title"
             android:textSize="18sp"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/poster"
             app:layout_constraintTop_toTopOf="parent" />

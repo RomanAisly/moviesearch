@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.fragment_placeholder, HomeFragment())
             .addToBackStack(null).commit()
 
-
     }
 
     fun launchDetailsFragment(film: Film) {
@@ -48,8 +47,11 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavig.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.favorites -> {
-                    Toast.makeText(this, getString(R.string.toast_favorites), Toast.LENGTH_SHORT)
-                        .show()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_placeholder, FavoritesFragment())
+                        .addToBackStack(null)
+                        .commit()
                     true
                 }
                 R.id.watch_later -> {
