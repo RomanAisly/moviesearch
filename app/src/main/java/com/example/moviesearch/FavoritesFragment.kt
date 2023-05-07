@@ -38,11 +38,11 @@ class FavoritesFragment : Fragment() {
             addItemDecoration(decorator)
         }
         filmsAdapter.addItems(favoritesList)
-        updateData(newList = ArrayList())
+        updateData(newList = ArrayList(favoritesList))
     }
 
     private fun updateData(newList: ArrayList<Film>) {
-        val filmDiff = FilmDiff(oldList = ArrayList(), newList)
+        val filmDiff = FilmDiff(oldList = ArrayList(newList), newList)
         val diffResult = DiffUtil.calculateDiff(filmDiff)
         filmsAdapter.addItems(newList)
         diffResult.dispatchUpdatesTo(filmsAdapter)

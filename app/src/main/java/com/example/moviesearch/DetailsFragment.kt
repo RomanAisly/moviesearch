@@ -35,29 +35,38 @@ class DetailsFragment : Fragment() {
                 getString(R.string.snack_favorites),
                 Snackbar.LENGTH_SHORT
             )
-            snackFavorites.setAction(getString(R.string.snack_delete)) {}
+            val snackFavoritesDeleted = Snackbar.make(
+                binding.detailsFabFavorites,
+                getString(R.string.snack_favorites_deleted),
+                Snackbar.LENGTH_SHORT
+            )
 
 
             if (!film.isInFavorites) {
                 binding.detailsFabFavorites.setImageResource(R.drawable.ic_favorites_full)
                 film.isInFavorites = true
-            } else{
+                snackFavorites.show()
+            } else {
                 binding.detailsFabFavorites.setImageResource(R.drawable.ic_favorite_empty)
                 film.isInFavorites = false
+                snackFavoritesDeleted.show()
             }
-            snackFavorites.show()
+
 
         }
         binding.detailsFabShare.setOnClickListener {
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
-            intent.putExtra(Intent.EXTRA_TEXT, "Check out this film: ${film.title} \n\n ${film.description}")
+            intent.putExtra(
+                Intent.EXTRA_TEXT,
+                "Check out this film: ${film.title} \n\n ${film.description}"
+            )
             intent.type = "text/plain"
             startActivity(Intent.createChooser(intent, "Share to:"))
         }
     }
 
-     private fun setFilmDetails() {
+    private fun setFilmDetails() {
 
         film = arguments?.get("film") as Film
 
