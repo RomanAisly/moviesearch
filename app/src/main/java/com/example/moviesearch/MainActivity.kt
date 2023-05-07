@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             "The plot of the unique and visually innovative film centers on a teenager from New York City, Miles Morales, who lives in a world of limitless possibilities in the Spider-Man universes, where the superhero costume is worn not only by him"
         )
     )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -59,7 +60,8 @@ class MainActivity : AppCompatActivity() {
 
         initNavigation()
 
-        supportFragmentManager.beginTransaction().add(R.id.fragment_placeholder, HomeFragment(filmsDataBase))
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_placeholder, HomeFragment(filmsDataBase))
             .addToBackStack(null).commit()
 
     }
