@@ -1,6 +1,11 @@
 package com.example.moviesearch
 
 import android.os.Bundle
+import android.transition.Scene
+import android.transition.Slide
+import android.transition.TransitionManager
+import android.transition.TransitionSet
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +20,6 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,11 +30,26 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.searchView.setOnClickListener {
-            binding.searchView.isIconified = false
+
+        val scene = Scene.getSceneForLayout(
+            binding.fragmentHome,
+            R.layout.merge_home_screen_content,
+            requireContext()
+        )
+        val searchSlide = Slide(Gravity.TOP).addTarget(R.id.search_view)
+        val recyclerSlide = Slide(Gravity.BOTTOM).addTarget(R.id.main_recycler)
+        val customTransition = TransitionSet().apply {
+            duration = 1000
+            addTransition(searchSlide)
+            addTransition(recyclerSlide)
+        }
+        TransitionManager.go(scene, customTransition)
+
+        binding.searchView?.setOnClickListener {
+            binding.searchView?.isIconified = false
         }
 
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }
@@ -55,7 +74,7 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
 
 
     private fun initRecycler() {
-        binding.mainRecycler.apply {
+        binding.mainRecycler?.apply {
             filmsAdapter =
                 FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
                     override fun click(film: Film) {
