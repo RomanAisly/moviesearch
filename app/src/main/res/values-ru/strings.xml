@@ -2,14 +2,12 @@
 <resources>
 
     <string name="app_name">Мир Кино</string>
-    <string name="source_of_posters">Постеры взяты с сайта: https://yandex.ru/images</string>
     <string name="favorites">Избранное</string>
     <string name="watch_later">Смотреть позже</string>
     <string name="selections">Подборки</string>
     <string name="settings">Настройки</string>
     <string name="find_your_movie">Найди Свой Фильм</string>
     <string name="toast_settings">Настройки</string>
-    <string name="toast_favorites">Избранное</string>
     <string name="toast_watchlater">Смотреть позже</string>
     <string name="toast_selections">Подборки</string>
     <string name="description">Описание</string>
@@ -17,9 +15,8 @@
     <string name="alertdialog_title">Вы хотите закрыть приложение?</string>
     <string name="alertdialog_positive">Да</string>
     <string name="alertdialog_negative">Нет</string>
-    <string name="snack_delete">Удалить</string>
     <string name="snack_favorites">Добавлено в \"Избранное\"</string>
-    <string name="snack_watch_later">Добавлено в \"Смотреть Позже\"</string>
+    <string name="snack_favorites_deleted">Удалено из \"Избранного\"</string>
 
 
 </resources>
