@@ -28,7 +28,6 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
         }
 
     })
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,7 +35,6 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -78,7 +76,6 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
 
     }
 
-
     private fun initRecycler() {
         binding2.mainRecycler.apply {
             adapter = filmsAdapter
@@ -87,5 +84,4 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
             addItemDecoration(decorator)
         }
     }
-
 }
