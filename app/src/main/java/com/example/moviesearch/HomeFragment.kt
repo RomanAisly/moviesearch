@@ -18,8 +18,10 @@ import java.util.*
 
 
 class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
-    private var binding: FragmentHomeBinding? = null
-    private var binding2 : MergeHomeScreenContentBinding? = null
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var binding2: MergeHomeScreenContentBinding
     private var filmsAdapter = FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
         override fun click(film: Film) {
             (requireActivity() as MainActivity).launchDetailsFragment(film)
@@ -31,21 +33,15 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val binding2 = MergeHomeScreenContentBinding.inflate(inflater, container, false)
-        this.binding = binding
-        this.binding2 = binding2
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val scene = Scene.getSceneForLayout(
-            binding?.fragmentHome,
-            R.layout.merge_home_screen_content,
-            requireContext()
-        )
+        binding2 = MergeHomeScreenContentBinding.inflate(layoutInflater, binding.fragmentHome, false)
+        val scene = Scene(binding.fragmentHome, binding2.root)
         val searchSlide = Slide(Gravity.TOP).addTarget(R.id.search_view)
         val recyclerSlide = Slide(Gravity.BOTTOM).addTarget(R.id.main_recycler)
         val customTransition = TransitionSet().apply {
@@ -55,11 +51,11 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
         }
         TransitionManager.go(scene, customTransition)
 
-        binding2?.searchView?.setOnClickListener {
-            binding2?.searchView?.isIconified = false
+        binding2.searchView.setOnClickListener {
+            binding2.searchView.isIconified = false
         }
 
-        binding2?.searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding2.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }
@@ -84,7 +80,7 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
 
 
     private fun initRecycler() {
-        binding2?.mainRecycler?.apply {
+        binding2.mainRecycler.apply {
             adapter = filmsAdapter
             layoutManager = LinearLayoutManager(requireContext())
             val decorator = TopSpacingItemDecoration(7)
