@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesearch.databinding.FragmentFavoritesBinding
 
 
-class FavoritesFragment (val filmsDataBase: List<Film>): Fragment() {
+class FavoritesFragment (private val filmsDataBase: List<Film>): Fragment() {
     private lateinit var binding: FragmentFavoritesBinding
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     override fun onCreateView(

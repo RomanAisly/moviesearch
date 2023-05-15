@@ -8,7 +8,7 @@ import com.example.moviesearch.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private var binding: ActivityMainBinding? = null
 
     private val filmsDataBase = listOf(
         Film(
@@ -56,7 +56,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        this.binding = binding
         setContentView(binding.root)
 
 
@@ -73,24 +74,24 @@ class MainActivity : AppCompatActivity() {
         bundle.putParcelable("film", film)
         val fragment = DetailsFragment()
         fragment.arguments = bundle
-
         supportFragmentManager.beginTransaction().replace(R.id.fragment_placeholder, fragment)
             .addToBackStack(null).commit()
     }
 
     private fun initNavigation() {
-        binding.topAppBar.setOnMenuItemClickListener {
+        binding?.topAppBar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.settings -> {
                     Toast.makeText(this, getString(R.string.toast_settings), Toast.LENGTH_SHORT)
                         .show()
                     true
                 }
+
                 else -> false
             }
         }
 
-        binding.bottomNavig.setOnItemSelectedListener {
+        binding?.bottomNavig?.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.favorites -> {
                     supportFragmentManager
@@ -100,16 +101,19 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
+
                 R.id.watch_later -> {
                     Toast.makeText(this, getString(R.string.toast_watchlater), Toast.LENGTH_SHORT)
                         .show()
                     true
                 }
+
                 R.id.selections -> {
                     Toast.makeText(this, getString(R.string.toast_selections), Toast.LENGTH_SHORT)
                         .show()
                     true
                 }
+
                 else -> false
             }
         }
