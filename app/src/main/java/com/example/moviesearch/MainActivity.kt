@@ -79,17 +79,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initNavigation() {
-        binding?.topAppBar?.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.settings -> {
-                    Toast.makeText(this, getString(R.string.toast_settings), Toast.LENGTH_SHORT)
-                        .show()
-                    true
-                }
-
-                else -> false
-            }
-        }
 
         binding?.bottomNavig?.setOnItemSelectedListener {
             when (it.itemId) {
