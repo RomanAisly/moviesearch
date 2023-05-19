@@ -16,5 +16,8 @@
     <string name="alertdialog_negative">No</string>
     <string name="snack_favorites">Added to \"Favorites\"</string>
     <string name="snack_favorites_deleted">Deleted from \"Favorites\"</string>
+    <string name="home">Home</string>
+    <string name="toast_home">Home</string>
+
 
 </resources>
