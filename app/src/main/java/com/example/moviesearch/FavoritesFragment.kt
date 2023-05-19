@@ -24,6 +24,8 @@ class FavoritesFragment (private val filmsDataBase: List<Film>): Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val favoritesList: List<Film> = filmsDataBase.filter { it.isInFavorites }
 
+        AnimationHelper.performFragmentCircularRevealAnimation(binding.fragmentFavorites, requireActivity(), 2)
+
         binding.favoritesRecycler.apply {
             filmsAdapter =
                 FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
