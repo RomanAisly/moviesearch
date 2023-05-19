@@ -31,6 +31,7 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        AnimationHelper.performFragmentCircularRevealAnimation(binding.fragmentHome, requireActivity(), 1)
 
         binding.searchView.setOnClickListener {
             binding.searchView.isIconified = false
