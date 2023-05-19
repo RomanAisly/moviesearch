@@ -17,6 +17,8 @@
     <string name="alertdialog_negative">Нет</string>
     <string name="snack_favorites">Добавлено в \"Избранное\"</string>
     <string name="snack_favorites_deleted">Удалено из \"Избранного\"</string>
+    <string name="home">Главная</string>
+    <string name="toast_home">Главная</string>
 
 
 </resources>

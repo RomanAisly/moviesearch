@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.moviesearch.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -82,22 +83,40 @@ class MainActivity : AppCompatActivity() {
 
         binding?.bottomNavig?.setOnItemSelectedListener {
             when (it.itemId) {
+
+                R.id.home -> {
+                    val tag = "home"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment?: HomeFragment(filmsDataBase), tag)
+                    Toast.makeText(this, getString(R.string.toast_home), Toast.LENGTH_SHORT).show()
+                    true
+                }
                 R.id.favorites -> {
                     supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.fragment_placeholder, FavoritesFragment(filmsDataBase))
                         .addToBackStack(null)
                         .commit()
+                    val tag = "favorites"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment?: FavoritesFragment(filmsDataBase), tag)
                     true
                 }
 
+
                 R.id.watch_later -> {
+                    val tag = "watch_later"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment?: WatchLaterFragment(), tag)
                     Toast.makeText(this, getString(R.string.toast_watchlater), Toast.LENGTH_SHORT)
                         .show()
                     true
                 }
 
                 R.id.selections -> {
+                    val tag = "selections"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment?: SelectionsFragment(), tag)
                     Toast.makeText(this, getString(R.string.toast_selections), Toast.LENGTH_SHORT)
                         .show()
                     true
@@ -123,5 +142,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkFragmentExistence(tag: String): Fragment? =
+        supportFragmentManager.findFragmentByTag(tag)
+
+    private fun changeFragment(fragment: Fragment, tag: String) {
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_placeholder, fragment, tag)
+            .addToBackStack(null).commit()
+    }
 
 }
