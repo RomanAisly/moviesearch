@@ -40,6 +40,7 @@ class FavoritesFragment (private val filmsDataBase: List<Film>): Fragment() {
         }
         filmsAdapter.addItems(favoritesList)
 
+
     }
 
 
