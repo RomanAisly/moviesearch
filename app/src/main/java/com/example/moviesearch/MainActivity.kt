@@ -92,11 +92,6 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.favorites -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.fragment_placeholder, FavoritesFragment(filmsDataBase))
-                        .addToBackStack(null)
-                        .commit()
                     val tag = "favorites"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment?: FavoritesFragment(filmsDataBase), tag)
@@ -149,5 +144,6 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_placeholder, fragment, tag)
             .addToBackStack(null).commit()
     }
+
 
 }

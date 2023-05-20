@@ -81,5 +81,13 @@
 
     </androidx.core.widget.NestedScrollView>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="350dp"
+        android:layout_gravity="bottom|center"
+        android:layout_height="200dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/fragment_details_anim"
+        android:id="@+id/fragment_details_anim_loop"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

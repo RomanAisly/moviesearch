@@ -14,9 +14,11 @@ class WatchLaterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentWatchLaterBinding.inflate(layoutInflater)
         return binding.root
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,6 +29,7 @@ class WatchLaterFragment : Fragment() {
             requireActivity(),
             3
         )
+
     }
 
 
