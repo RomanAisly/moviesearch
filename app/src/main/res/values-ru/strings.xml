@@ -5,9 +5,6 @@
     <string name="favorites">Избранное</string>
     <string name="watch_later">Смотреть позже</string>
     <string name="selections">Подборки</string>
-    <string name="settings">Настройки</string>
-    <string name="find_your_movie">Найди Свой Фильм</string>
-    <string name="toast_settings">Настройки</string>
     <string name="toast_watchlater">Смотреть позже</string>
     <string name="toast_selections">Подборки</string>
     <string name="description">Описание</string>
