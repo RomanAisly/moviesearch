@@ -43,11 +43,4 @@
         tools:listitem="@layout/film_item" />
 
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="350dp"
-        android:layout_gravity="center"
-        android:layout_height="600dp"
-        app:lottie_rawRes="@raw/on_launch_app_animation"
-        android:id="@+id/launch_anim"/>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

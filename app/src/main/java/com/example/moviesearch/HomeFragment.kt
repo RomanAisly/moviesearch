@@ -1,13 +1,9 @@
 package com.example.moviesearch
 
-import android.animation.Animator
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +34,7 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         AnimationHelper.performFragmentCircularRevealAnimation(
             binding.fragmentHome,
@@ -70,7 +67,6 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
         initRecycler()
         filmsAdapter.addItems(filmsDataBase)
 
-        onLaunchAppAnimation()
 
 
     }
@@ -84,28 +80,5 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
         }
     }
 
-    private fun onLaunchAppAnimation() {
-        val launchAnim = binding.launchAnim
-        launchAnim.addAnimatorListener(object : Animator.AnimatorListener {
-            override fun onAnimationStart(animation: Animator) {
-
-            }
-
-            override fun onAnimationEnd(animation: Animator) {
-                launchAnim.visibility = View.GONE
-            }
-
-            override fun onAnimationCancel(animation: Animator) {
-
-            }
-
-            override fun onAnimationRepeat(animation: Animator) {
-
-            }
-
-        })
-        launchAnim.setAnimation(R.raw.on_launch_app_animation)
-        launchAnim.playAnimation()
-    }
 
 }
