@@ -4,10 +4,8 @@
     <color name="blue">#072CFA</color>
     <color name="bright_blue">#058EFB</color>
     <color name="green">#05FB0F</color>
-    <color name="yellow">#F3DA03</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FD1605</color>
-    <color name="orange">#FF9800</color>
 
 </resources>
