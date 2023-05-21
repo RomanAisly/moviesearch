@@ -13,4 +13,13 @@
         <item name="android:statusBarColor">#FF9800</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.MovieSearch.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MovieSearch.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MovieSearch.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

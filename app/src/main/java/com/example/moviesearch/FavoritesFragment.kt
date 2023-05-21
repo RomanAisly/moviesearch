@@ -12,6 +12,8 @@ import com.example.moviesearch.databinding.FragmentFavoritesBinding
 class FavoritesFragment (private val filmsDataBase: List<Film>): Fragment() {
     private lateinit var binding: FragmentFavoritesBinding
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

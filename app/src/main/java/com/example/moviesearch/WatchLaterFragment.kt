@@ -10,7 +10,6 @@ import com.example.moviesearch.databinding.FragmentWatchLaterBinding
 class WatchLaterFragment : Fragment() {
     private lateinit var binding: FragmentWatchLaterBinding
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
