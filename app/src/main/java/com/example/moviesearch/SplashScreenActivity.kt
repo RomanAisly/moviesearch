@@ -22,8 +22,5 @@ class SplashScreenActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             delay(2000)
             startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
-            finish()
-        }
-    }
 
 }
