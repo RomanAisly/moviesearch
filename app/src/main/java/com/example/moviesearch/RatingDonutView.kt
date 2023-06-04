@@ -1,11 +1,7 @@
 package com.example.moviesearch
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.RectF
-import android.graphics.Typeface
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 
@@ -24,6 +20,9 @@ class RatingDonutView @JvmOverloads constructor(
     private lateinit var strokePaint: Paint
     private lateinit var digitPaint: Paint
     private lateinit var circlePaint: Paint
+    private var isStaticPictureDrawn: Boolean = false
+    private lateinit var bitmap: Bitmap
+    private lateinit var staticCanvas: Canvas
 
     private fun initPaint() {
         strokePaint = Paint().apply {
@@ -47,13 +46,6 @@ class RatingDonutView @JvmOverloads constructor(
             style = Paint.Style.FILL
             color = Color.DKGRAY
         }
-    }
-
-    private fun getPaintColor(progress: Int): Int = when (progress) {
-        in 0..25 -> Color.parseColor("#FF2400")
-        in 26..50 -> Color.parseColor("#FAD201")
-        in 51..75 -> Color.parseColor("#2AFF18")
-        else -> Color.parseColor("#0000FF")
     }
 
     init {
@@ -93,9 +85,36 @@ class RatingDonutView @JvmOverloads constructor(
         setMeasuredDimension(minSide, minSide)
     }
 
+    private fun drawStaticPicture() {
+        bitmap = Bitmap.createBitmap(
+            (centerX * 2).toInt(),
+            (centerY * 2).toInt(),
+            Bitmap.Config.ARGB_8888
+        )
+        staticCanvas = Canvas(bitmap)
+        drawRating(staticCanvas)
+        drawText(staticCanvas)
+    }
+
     private fun chosenDimension(mode: Int, size: Int) = when (mode) {
         MeasureSpec.AT_MOST, MeasureSpec.EXACTLY -> size
         else -> 300
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        if (!isStaticPictureDrawn) {
+            drawStaticPicture()
+        }
+        canvas.drawBitmap(bitmap, centerX - radius, centerY - radius, null)
+        drawRating(canvas)
+        drawText(canvas)
+        isStaticPictureDrawn = true
+    }
+
+    fun setProgress(pr: Int) {
+        progress = pr
+        initPaint()
+        invalidate()
     }
 
     private fun drawRating(canvas: Canvas) {
@@ -104,7 +123,7 @@ class RatingDonutView @JvmOverloads constructor(
         canvas.translate(centerX, centerY)
         oval.set(0f - scale, 0f - scale, scale, scale)
         canvas.drawCircle(0f, 0f, radius, circlePaint)
-        canvas.drawOval(oval, -90f, convertProgressToDegress(progress), false, strokePaint)
+        canvas.drawArc(oval, -90f, convertProgressToDegress(progress), false, strokePaint)
         canvas.restore()
     }
 
@@ -117,15 +136,11 @@ class RatingDonutView @JvmOverloads constructor(
         canvas.drawText(message, centerX - advance / 2, centerY + advance / 4, digitPaint)
     }
 
-    override fun onDraw(canvas: Canvas) {
-        drawRating(canvas)
-        drawText(canvas)
-    }
-
-    fun setProgress(pr: Int) {
-        progress = pr
-        initPaint()
-        invalidate()
+    private fun getPaintColor(progress: Int): Int = when (progress) {
+        in 0..25 -> Color.parseColor("#FF2400")
+        in 26..50 -> Color.parseColor("#FAD201")
+        in 51..75 -> Color.parseColor("#2AFF18")
+        else -> Color.parseColor("#0000FF")
     }
 
     private fun convertProgressToDegress(progress: Int): Float = progress * 3.6f

@@ -3,6 +3,7 @@ package com.example.moviesearch
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
 class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) :
@@ -18,7 +19,7 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) :
         when (holder) {
             is FilmViewHolder -> {
                 holder.bind(items[position])
-                holder.itemView.findViewById<CardView>(R.id.item_container).setOnClickListener {
+                holder.itemView.findViewById<ConstraintLayout>(R.id.item_container).setOnClickListener {
                     clickListener.click(items[position])
                 }
             }
