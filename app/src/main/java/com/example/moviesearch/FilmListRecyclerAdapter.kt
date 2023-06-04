@@ -18,7 +18,7 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) :
         when (holder) {
             is FilmViewHolder -> {
                 holder.bind(items[position])
-                holder.itemView.findViewById<CardView>(R.id.item_conteiner).setOnClickListener {
+                holder.itemView.findViewById<CardView>(R.id.item_container).setOnClickListener {
                     clickListener.click(items[position])
                 }
             }
