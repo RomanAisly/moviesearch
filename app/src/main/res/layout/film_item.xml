@@ -6,15 +6,15 @@
 
     <com.example.moviesearch.RatingDonutView
         android:id="@+id/rating_donut"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_gravity="bottom|start"
-        android:translationX="11dp"
+        android:translationZ="11dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:progress="77"
-        app:stroke="10" />
+        app:stroke="7" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

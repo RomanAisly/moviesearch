@@ -1,9 +1,11 @@
 package com.example.moviesearch
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 
 class RatingDonutView @JvmOverloads constructor(
     context: Context,
@@ -14,7 +16,7 @@ class RatingDonutView @JvmOverloads constructor(
     private var radius: Float = 0f
     private var centerX: Float = 0f
     private var centerY: Float = 0f
-    private var stroke = 10f
+    private var stroke = 7f
     private var progress = 50
     private var scaleSize = 60f
     private lateinit var strokePaint: Paint
@@ -23,6 +25,7 @@ class RatingDonutView @JvmOverloads constructor(
     private var isStaticPictureDrawn: Boolean = false
     private lateinit var bitmap: Bitmap
     private lateinit var staticCanvas: Canvas
+    private var animator: ValueAnimator? = null
 
     private fun initPaint() {
         strokePaint = Paint().apply {
@@ -35,16 +38,15 @@ class RatingDonutView @JvmOverloads constructor(
         digitPaint = Paint().apply {
             style = Paint.Style.FILL_AND_STROKE
             strokeWidth = 2f
-            setShadowLayer(5f, 0f, 0f, Color.DKGRAY)
             textSize = scaleSize
-            typeface = Typeface.SANS_SERIF
+            typeface = Typeface.SERIF
             color = getPaintColor(progress)
             isAntiAlias = true
         }
 
         circlePaint = Paint().apply {
-            style = Paint.Style.FILL
-            color = Color.DKGRAY
+            style = Paint.Style.FILL_AND_STROKE
+            color = Color.WHITE
         }
     }
 
@@ -58,6 +60,7 @@ class RatingDonutView @JvmOverloads constructor(
             a.recycle()
         }
         initPaint()
+        startRatingAnimation()
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -98,7 +101,7 @@ class RatingDonutView @JvmOverloads constructor(
 
     private fun chosenDimension(mode: Int, size: Int) = when (mode) {
         MeasureSpec.AT_MOST, MeasureSpec.EXACTLY -> size
-        else -> 300
+        else -> 200
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -145,4 +148,16 @@ class RatingDonutView @JvmOverloads constructor(
 
     private fun convertProgressToDegress(progress: Int): Float = progress * 3.6f
 
+    private fun startRatingAnimation() {
+        animator?.cancel()
+        animator = ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = 1600
+            interpolator = AccelerateDecelerateInterpolator()
+            addUpdateListener {
+                this@RatingDonutView.alpha = it.animatedValue as Float
+                invalidate()
+            }
+        }
+        animator?.start()
+    }
 }
