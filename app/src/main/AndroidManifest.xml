@@ -16,9 +16,6 @@
             android:exported="false"
             android:theme="@style/Theme.MovieSearch.NoActionBar" />
         <activity
-            android:name=".DetailsFragment"
-            android:exported="false" />
-        <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>

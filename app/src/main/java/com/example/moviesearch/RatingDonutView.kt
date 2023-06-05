@@ -18,7 +18,7 @@ class RatingDonutView @JvmOverloads constructor(
     private var centerY: Float = 0f
     private var stroke = 7f
     private var progress = 50
-    private var scaleSize = 60f
+    private var scaleSize = 35f
     private lateinit var strokePaint: Paint
     private lateinit var digitPaint: Paint
     private lateinit var circlePaint: Paint
@@ -151,7 +151,7 @@ class RatingDonutView @JvmOverloads constructor(
     private fun startRatingAnimation() {
         animator?.cancel()
         animator = ValueAnimator.ofFloat(0f, 1f).apply {
-            duration = 1600
+            duration = 1400
             interpolator = AccelerateDecelerateInterpolator()
             addUpdateListener {
                 this@RatingDonutView.alpha = it.animatedValue as Float
