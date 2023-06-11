@@ -8,13 +8,15 @@ import androidx.fragment.app.Fragment
 import com.example.moviesearch.databinding.FragmentWatchLaterBinding
 
 class WatchLaterFragment : Fragment() {
-    private lateinit var binding: FragmentWatchLaterBinding
+    private var _binding: FragmentWatchLaterBinding? = null
+    private val binding: FragmentWatchLaterBinding
+        get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentWatchLaterBinding.inflate(layoutInflater)
+        _binding = FragmentWatchLaterBinding.inflate(layoutInflater)
         return binding.root
 
 

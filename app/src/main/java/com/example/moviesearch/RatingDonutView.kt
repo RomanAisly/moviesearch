@@ -141,9 +141,9 @@ class RatingDonutView @JvmOverloads constructor(
 
     private fun getPaintColor(progress: Int): Int = when (progress) {
         in 0..25 -> Color.parseColor("#FF2400")
-        in 26..50 -> Color.parseColor("#FAD201")
-        in 51..75 -> Color.parseColor("#2AFF18")
-        else -> Color.parseColor("#0000FF")
+        in 26..50 -> Color.parseColor("#FF7518")
+        in 51..75 -> Color.parseColor("#FFCF40")
+        else -> Color.parseColor("#47A76A")
     }
 
     private fun convertProgressToDegress(progress: Int): Float = progress * 3.6f

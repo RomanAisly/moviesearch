@@ -9,13 +9,15 @@ import com.example.moviesearch.databinding.FragmentSelectionsBinding
 
 
 class SelectionsFragment : Fragment() {
-    private lateinit var binding: FragmentSelectionsBinding
+    private var _binding: FragmentSelectionsBinding? = null
+    private val binding: FragmentSelectionsBinding
+        get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSelectionsBinding.inflate(layoutInflater)
+        _binding = FragmentSelectionsBinding.inflate(inflater, container, false)
         return binding.root
     }
 

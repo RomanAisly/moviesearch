@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesearch.databinding.FragmentFavoritesBinding
 
 
-class FavoritesFragment (private val filmsDataBase: List<Film>): Fragment() {
-    private lateinit var binding: FragmentFavoritesBinding
+class FavoritesFragment(private val filmsDataBase: List<Film>) : Fragment() {
+    private var _binding: FragmentFavoritesBinding? = null
+    private val binding: FragmentFavoritesBinding
+        get() = _binding!!
+
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
 
 
@@ -18,7 +21,7 @@ class FavoritesFragment (private val filmsDataBase: List<Film>): Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFavoritesBinding.inflate(layoutInflater)
+        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -26,7 +29,11 @@ class FavoritesFragment (private val filmsDataBase: List<Film>): Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val favoritesList: List<Film> = filmsDataBase.filter { it.isInFavorites }
 
-        AnimationHelper.performFragmentCircularRevealAnimation(binding.fragmentFavorites, requireActivity(), 2)
+        AnimationHelper.performFragmentCircularRevealAnimation(
+            binding.fragmentFavorites,
+            requireActivity(),
+            2
+        )
 
         binding.favoritesRecycler.apply {
             filmsAdapter =

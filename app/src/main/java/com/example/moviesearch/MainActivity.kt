@@ -9,7 +9,9 @@ import com.example.moviesearch.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private var binding: ActivityMainBinding? = null
+    private var _binding: ActivityMainBinding? = null
+    private val binding: ActivityMainBinding
+        get() = _binding!!
 
     private val filmsDataBase = listOf(
         Film(
@@ -65,8 +67,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        this.binding = binding
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -89,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initNavigation() {
 
-        binding?.bottomNavig?.setOnItemSelectedListener {
+        binding.bottomNavig.setOnItemSelectedListener {
             when (it.itemId) {
 
                 R.id.home -> {

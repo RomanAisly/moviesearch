@@ -11,14 +11,17 @@ import com.google.android.material.snackbar.Snackbar
 
 class DetailsFragment : Fragment() {
 
-    private lateinit var binding: FragmentDetailsBinding
+    private var _binding: FragmentDetailsBinding? = null
+    private val binding: FragmentDetailsBinding
+        get() = _binding!!
+
     private lateinit var film: Film
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
 
     }
