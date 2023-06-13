@@ -16,6 +16,7 @@
     <string name="snack_favorites_deleted">Удалено из \"Избранного\"</string>
     <string name="home">Главная</string>
     <string name="toast_home">Главная</string>
+    <string name="seach_view_hint">введите название фильма</string>
 
 
 </resources>

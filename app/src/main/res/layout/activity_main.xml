@@ -8,7 +8,6 @@
     tools:context=".MainActivity">
 
 
-
     <FrameLayout
         android:id="@+id/fragment_placeholder"
         android:layout_width="match_parent"
@@ -23,7 +22,6 @@
         android:id="@+id/bottom_navig"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/fragment_placeholder"
         android:background="@drawable/shape_background_bottom_navigation"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
@@ -31,6 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_placeholder"
         app:menu="@menu/navigation" />
 
 

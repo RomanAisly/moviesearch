@@ -2,25 +2,33 @@ package com.example.moviesearch
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moviesearch.databinding.FilmItemBinding
 
 class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val items = mutableListOf<Film>()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmViewHolder {
         return FilmViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.film_item, parent, false)
+            FilmItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
+
+
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is FilmViewHolder -> {
                 holder.bind(items[position])
-                holder.itemView.findViewById<CardView>(R.id.item_conteiner).setOnClickListener {
-                    clickListener.click(items[position])
-                }
+                holder.itemView.findViewById<ConstraintLayout>(R.id.item_container)
+                    .setOnClickListener {
+                        clickListener.click(items[position])
+                    }
             }
         }
     }

@@ -11,12 +11,13 @@ import kotlinx.coroutines.launch
 
 class SplashScreenActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySplashScreenBinding
+    private var _binding: ActivitySplashScreenBinding? = null
+    private val binding: ActivitySplashScreenBinding
+        get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
+        _binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         CoroutineScope(Dispatchers.Main).launch {
