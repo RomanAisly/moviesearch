@@ -1,4 +1,4 @@
-package com.example.moviesearch
+package view.customeviews
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -6,6 +6,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import com.example.moviesearch.R
 
 class RatingDonutView @JvmOverloads constructor(
     context: Context,

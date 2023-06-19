@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/shape_background_watch_later"
     android:visibility="invisible"
-    tools:context=".WatchLaterFragment"
+    tools:context="view.fragments.WatchLaterFragment"
     tools:visibility="visible">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

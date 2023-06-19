@@ -1,21 +1,43 @@
-package com.example.moviesearch
+package view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import view.rv_adapters.FilmListRecyclerAdapter
+import view.rv_adapters.TopSpacingItemDecoration
 import com.example.moviesearch.databinding.FragmentFavoritesBinding
+import domain.Film
+import utils.AnimationHelper
+import view.MainActivity
+import viewmodel.FavoriteFragmentViewModel
+import viewmodel.HomeFragmentViewModel
 
+class FavoritesFragment : Fragment() {
 
-class FavoritesFragment(private val filmsDataBase: List<Film>) : Fragment() {
+    private val viewModel by lazy {
+        ViewModelProvider.NewInstanceFactory().create(FavoriteFragmentViewModel::class.java)
+    }
+
     private var _binding: FragmentFavoritesBinding? = null
     private val binding: FragmentFavoritesBinding
         get() = _binding!!
 
-    private lateinit var filmsAdapter: FilmListRecyclerAdapter
-
+    private var filmsDataBase = listOf<Film>()
+        set(value) {
+            if (field == value) return
+            field = value.filter { it.isInFavorites }
+            filmsAdapter.addItems(field)
+        }
+    private var filmsAdapter =
+        FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
+            override fun click(film: Film) {
+                (requireActivity() as MainActivity).launchDetailsFragment(film)
+            }
+        })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +49,6 @@ class FavoritesFragment(private val filmsDataBase: List<Film>) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val favoritesList: List<Film> = filmsDataBase.filter { it.isInFavorites }
 
         AnimationHelper.performFragmentCircularRevealAnimation(
             binding.fragmentFavorites,
@@ -35,22 +56,22 @@ class FavoritesFragment(private val filmsDataBase: List<Film>) : Fragment() {
             2
         )
 
+        initRecycler()
+        filmsAdapter.addItems(filmsDataBase)
+        viewModel.filmsListLiveData.observe(
+            viewLifecycleOwner
+        ) {
+            filmsDataBase = it
+        }
+
+    }
+
+    private fun initRecycler() {
         binding.favoritesRecycler.apply {
-            filmsAdapter =
-                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
-                    override fun click(film: Film) {
-                        (requireActivity() as MainActivity).launchDetailsFragment(film)
-                    }
-                })
             adapter = filmsAdapter
             layoutManager = LinearLayoutManager(requireContext())
             val decorator = TopSpacingItemDecoration(7)
             addItemDecoration(decorator)
         }
-        filmsAdapter.addItems(favoritesList)
-
-
     }
-
-
 }

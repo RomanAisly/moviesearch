@@ -1,4 +1,4 @@
-package com.example.moviesearch
+package view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,15 +6,32 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import view.rv_adapters.FilmListRecyclerAdapter
+import view.rv_adapters.TopSpacingItemDecoration
 import com.example.moviesearch.databinding.FragmentHomeBinding
+import domain.Film
+import utils.AnimationHelper
+import view.MainActivity
+import viewmodel.HomeFragmentViewModel
 import java.util.*
 
+class HomeFragment : Fragment() {
 
-class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
+    private val viewModel by lazy {
+        ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
+    }
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    private var filmsDataBase = listOf<Film>()
+        set(value) {
+            if (field == value) return
+            field = value
+            filmsAdapter.addItems(field)
+        }
     private var filmsAdapter =
         FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
             override fun click(film: Film) {
@@ -34,7 +51,6 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         AnimationHelper.performFragmentCircularRevealAnimation(
             binding.fragmentHome,
@@ -66,8 +82,11 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
         })
         initRecycler()
         filmsAdapter.addItems(filmsDataBase)
-
-
+        viewModel.filmsListLiveData.observe(
+            viewLifecycleOwner
+        ) {
+            filmsDataBase = it
+        }
 
     }
 
@@ -79,6 +98,4 @@ class HomeFragment(val filmsDataBase: List<Film>) : Fragment() {
             addItemDecoration(decorator)
         }
     }
-
-
 }

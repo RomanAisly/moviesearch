@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/shape_background_main"
     android:visibility="invisible"
-    tools:context=".HomeFragment"
+    tools:context="view.fragments.HomeFragment"
     tools:visibility="visible">
 
 

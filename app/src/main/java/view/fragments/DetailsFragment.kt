@@ -1,4 +1,4 @@
-package com.example.moviesearch
+package view.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.moviesearch.R
 import com.example.moviesearch.databinding.FragmentDetailsBinding
 import com.google.android.material.snackbar.Snackbar
+import domain.Film
 
 class DetailsFragment : Fragment() {
 
@@ -28,7 +30,6 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         setFilmDetails()
 
