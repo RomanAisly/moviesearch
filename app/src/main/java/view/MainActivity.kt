@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.moviesearch.*
+import com.example.moviesearch.R
 import com.example.moviesearch.databinding.ActivityMainBinding
 import domain.Film
 import view.fragments.*
@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         initNavigation()
 
