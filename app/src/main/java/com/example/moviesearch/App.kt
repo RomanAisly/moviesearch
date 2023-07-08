@@ -34,7 +34,7 @@ class App : Application() {
 
         retrofitService = retrofit.create(TmdbApi::class.java)
 
-        interactor = Interactor(repo, retrofitService)
+        interactor = Interactor(retrofitService)
     }
 
     companion object {

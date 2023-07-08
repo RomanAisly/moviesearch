@@ -1,8 +1,9 @@
 package viewmodel
 
-import com.example.moviesearch.App
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.moviesearch.App
 import domain.Film
 import domain.Interactor
 
@@ -11,7 +12,7 @@ class HomeFragmentViewModel : ViewModel() {
     private var interactor: Interactor = App.instance.interactor
 
     init {
-        interactor.getFilmsFromAPI(1, object : ApiCallback{
+        interactor.getFilmsFromAPI(1, object : ApiCallback {
             override fun onSuccess(films: List<Film>) {
                 filmsListLiveData.postValue(films)
             }
@@ -23,7 +24,7 @@ class HomeFragmentViewModel : ViewModel() {
         })
     }
 
-    interface ApiCallback{
+    interface ApiCallback {
         fun onSuccess(films: List<Film>)
         fun onFailure()
     }
