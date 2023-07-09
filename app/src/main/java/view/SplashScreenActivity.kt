@@ -1,4 +1,4 @@
-package com.example.moviesearch
+package view
 
 import android.content.Intent
 import android.os.Bundle

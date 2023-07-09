@@ -1,4 +1,4 @@
-package com.example.moviesearch
+package view.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.example.moviesearch.R
 import com.example.moviesearch.databinding.FragmentDetailsBinding
 import com.google.android.material.snackbar.Snackbar
+import data.ApiConstants
+import domain.Film
 
 class DetailsFragment : Fragment() {
 
@@ -28,7 +32,6 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         setFilmDetails()
 
@@ -74,7 +77,9 @@ class DetailsFragment : Fragment() {
         film = arguments?.get("film") as Film
 
         binding.detailsToolbar.title = film.title
-        binding.detailsPoster.setImageResource(film.poster)
+        Glide.with(this).load(ApiConstants.IMAGES_URL + "w780" + film.poster)
+            .placeholder(R.drawable.loading_image).error(R.drawable.internet_is_disconnected)
+            .into(binding.detailsPoster)
         binding.detailsDescription.text = film.description
 
 

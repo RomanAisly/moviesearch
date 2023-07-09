@@ -1,10 +1,13 @@
-package com.example.moviesearch
+package view.rv_adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import view.rv_viewholders.FilmViewHolder
+import com.example.moviesearch.R
 import com.example.moviesearch.databinding.FilmItemBinding
+import domain.Film
 
 class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

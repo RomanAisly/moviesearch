@@ -16,6 +16,8 @@
     <string name="home">Home</string>
     <string name="toast_home">Home</string>
     <string name="seach_view_hint">enter film title</string>
+    <string name="toast_favorites">Favorites</string>
+    <string name="toast_disconnected_internet">Internet is disconnected</string>
 
 
 </resources>
