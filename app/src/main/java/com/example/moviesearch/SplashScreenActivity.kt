@@ -24,5 +24,6 @@ class SplashScreenActivity : AppCompatActivity() {
             delay(2000)
             startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
             finish()
-
+        }
+        }
 }
