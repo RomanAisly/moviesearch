@@ -7,14 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import view.rv_adapters.FilmListRecyclerAdapter
-import view.rv_adapters.TopSpacingItemDecoration
 import com.example.moviesearch.databinding.FragmentFavoritesBinding
 import domain.Film
 import utils.AnimationHelper
 import view.MainActivity
+import view.rv_adapters.FilmListRecyclerAdapter
+import view.rv_adapters.TopSpacingItemDecoration
 import viewmodel.FavoriteFragmentViewModel
-import viewmodel.HomeFragmentViewModel
 
 class FavoritesFragment : Fragment() {
 

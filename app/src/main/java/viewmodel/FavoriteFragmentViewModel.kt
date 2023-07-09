@@ -27,4 +27,6 @@ class FavoriteFragmentViewModel: ViewModel() {
         fun onSuccess(films: List<Film>)
         fun onFailure()
     }
+
+
 }

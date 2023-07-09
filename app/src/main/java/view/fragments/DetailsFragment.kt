@@ -78,6 +78,7 @@ class DetailsFragment : Fragment() {
 
         binding.detailsToolbar.title = film.title
         Glide.with(this).load(ApiConstants.IMAGES_URL + "w780" + film.poster)
+            .placeholder(R.drawable.loading_image).error(R.drawable.internet_is_disconnected)
             .into(binding.detailsPoster)
         binding.detailsDescription.text = film.description
 

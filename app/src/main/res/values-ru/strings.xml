@@ -18,6 +18,7 @@
     <string name="toast_home">Главная</string>
     <string name="seach_view_hint">введите название фильма</string>
     <string name="toast_favorites">Избранное</string>
+    <string name="toast_disconnected_internet">Нет соединения с сетью</string>
 
 
 </resources>
