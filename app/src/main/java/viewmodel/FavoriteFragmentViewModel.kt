@@ -2,13 +2,15 @@ package viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.moviesearch.App
 import domain.Film
 import domain.Interactor
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class FavoriteFragmentViewModel: ViewModel() {
+//На данный момент это заглушка
+class FavoriteFragmentViewModel: ViewModel(), KoinComponent {
     val filmsListLiveData: MutableLiveData<List<Film>> = MutableLiveData()
-    private var interactor: Interactor = App.instance.interactor
+    private val interactor: Interactor by inject()
 
     init {
         interactor.getFilmsFromAPI(1, object : ApiCallback {

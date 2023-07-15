@@ -1,6 +1,7 @@
 package domain
 
 import data.API
+import data.MainRepository
 import data.TmdbApi
 import data.entily.TmdbResultDTO
 import retrofit2.Call
@@ -12,7 +13,8 @@ import viewmodel.FavoriteFragmentViewModel
 import viewmodel.HomeFragmentViewModel
 
 
-class Interactor(private val retrofitService: TmdbApi) {
+class Interactor(private val repo: MainRepository, private val retrofitService: TmdbApi) {
+
     fun getFilmsFromAPI(page: Int, callback: HomeFragmentViewModel.ApiCallback) {
         retrofitService.getFilms(API.KEY, "ru-RU", page).enqueue(object : Callback<TmdbResultDTO> {
             override fun onResponse(call: Call<TmdbResultDTO>, response: Response<TmdbResultDTO>) {
@@ -24,7 +26,7 @@ class Interactor(private val retrofitService: TmdbApi) {
             }
         })
     }
-
+        //Заглушка для списка Избранного
     fun getFilmsFromAPI(page: Int, callback: FavoriteFragmentViewModel.ApiCallback) {
         retrofitService.getFilms(API.KEY, "ru-RU", page).enqueue(object : Callback<TmdbResultDTO> {
             override fun onResponse(call: Call<TmdbResultDTO>, response: Response<TmdbResultDTO>) {

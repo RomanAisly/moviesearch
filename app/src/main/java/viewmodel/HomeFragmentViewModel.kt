@@ -4,15 +4,16 @@ import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.moviesearch.App
 import com.example.moviesearch.R
 import domain.Film
 import domain.Interactor
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class HomeFragmentViewModel : ViewModel() {
+class HomeFragmentViewModel : ViewModel(), KoinComponent {
     val filmsListLiveData: MutableLiveData<List<Film>> = MutableLiveData()
-    private var interactor: Interactor = App.instance.interactor
-
+    private val interactor: Interactor by inject()
+    //Функция для Toast
    fun initContext(context: Context){
        interactor.getFilmsFromAPI(1, object : ApiCallback {
            override fun onSuccess(films: List<Film>) {

@@ -58,7 +58,6 @@ class DetailsFragment : Fragment() {
                 snackFavoritesDeleted.show()
             }
 
-
         }
         binding.detailsFabShare.setOnClickListener {
             val intent = Intent()
@@ -77,12 +76,12 @@ class DetailsFragment : Fragment() {
         film = arguments?.get("film") as Film
 
         binding.detailsToolbar.title = film.title
+        //Загрузка постеров из сети с помощью Glide
         Glide.with(this).load(ApiConstants.IMAGES_URL + "w780" + film.poster)
             .placeholder(R.drawable.loading_image).error(R.drawable.internet_is_disconnected)
             .into(binding.detailsPoster)
         binding.detailsDescription.text = film.description
-
-
+        //Изменение внешнего вида кнопки "Добавить в избранное"
         binding.detailsFabFavorites.setImageResource(
             if (film.isInFavorites) {
                 R.drawable.ic_favorites_full
@@ -91,6 +90,5 @@ class DetailsFragment : Fragment() {
             }
         )
     }
-
 
 }
