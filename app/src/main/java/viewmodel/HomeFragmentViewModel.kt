@@ -8,10 +8,9 @@ import com.example.moviesearch.App
 import com.example.moviesearch.R
 import domain.Film
 import domain.Interactor
-import org.koin.core.KoinComponent
 import javax.inject.Inject
 
-class HomeFragmentViewModel : ViewModel(), KoinComponent {
+class HomeFragmentViewModel : ViewModel(){
     val filmsListLiveData: MutableLiveData<List<Film>> = MutableLiveData()
 
     @Inject

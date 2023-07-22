@@ -2,6 +2,8 @@ package com.example.moviesearch
 
 import android.app.Application
 import di.AppComponent
+import di.DaggerAppComponent
+
 
 class App : Application() {
 

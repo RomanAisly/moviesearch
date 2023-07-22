@@ -10,7 +10,6 @@ import kotlin.math.roundToInt
 
 object AnimationHelper {
     private const val menuItems = 4
-    //Функция анимаци для всех экранов
     fun performFragmentCircularRevealAnimation(rootView: View, activity: Activity, position: Int) {
         Executors.newSingleThreadExecutor().execute {
             while (true) {
