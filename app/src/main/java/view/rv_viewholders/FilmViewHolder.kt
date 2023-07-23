@@ -16,6 +16,7 @@ class FilmViewHolder(binding: FilmItemBinding) : RecyclerView.ViewHolder(binding
 
     fun bind(film: Film) {
         title.text = film.title
+        //Загрузка постеров из сети с помощью Glide
         Glide.with(itemView).load(ApiConstants.IMAGES_URL + "w342" + film.poster).centerCrop()
             .placeholder(
                 R.drawable.loading_image

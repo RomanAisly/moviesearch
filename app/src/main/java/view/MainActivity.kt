@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_placeholder, fragment)
             .addToBackStack(null).commit()
     }
-
+    //Кнопки навигации
     private fun initNavigation() {
 
         binding.bottomNavig.setOnItemSelectedListener {
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
+        //Кнопка "назад" с alert диалогом
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount == 1) {
             AlertDialog.Builder(this)

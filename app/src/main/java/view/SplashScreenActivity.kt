@@ -19,7 +19,7 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        //Использование карутин для второго активити
         CoroutineScope(Dispatchers.Main).launch {
             delay(2000)
             startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
