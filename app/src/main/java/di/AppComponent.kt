@@ -6,20 +6,22 @@ import di.modules.DomainModule
 import di.modules.RemoteModule
 import viewmodel.FavoriteFragmentViewModel
 import viewmodel.HomeFragmentViewModel
+import viewmodel.SettingsFragmentViewModel
 import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
         RemoteModule::class,
-        DomainModule::class,
-        DatabaseModule::class
+        DatabaseModule::class,
+        DomainModule::class
     ]
 )
 
 interface AppComponent {
     fun inject(homeFragVM: HomeFragmentViewModel)
-
     //заглушка
     fun inject(favorFragVM: FavoriteFragmentViewModel)
+
+    fun inject(settingsFragVM: SettingsFragmentViewModel)
 }

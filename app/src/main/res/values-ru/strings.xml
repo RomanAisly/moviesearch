@@ -19,6 +19,12 @@
     <string name="seach_view_hint">введите название фильма</string>
     <string name="toast_favorites">Избранное</string>
     <string name="toast_disconnected_internet">Нет соединения с сетью</string>
+    <string name="settings">Настройки</string>
+    <string name="the_main_screen_selection">Подборка на главном экране</string>
+    <string name="popular">Популярное</string>
+    <string name="top_rated">Топ</string>
+    <string name="upcoming">Скоро</string>
+    <string name="now_playing">Сейчас смотрят</string>
 
 
 </resources>

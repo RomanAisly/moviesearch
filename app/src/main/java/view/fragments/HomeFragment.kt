@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
             field = value
             filmsAdapter.addItems(field)
         }
-    private var filmsAdapter =
+    var filmsAdapter =
         FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
             override fun click(film: Film) {
                 (requireActivity() as MainActivity).launchDetailsFragment(film)
@@ -86,11 +86,13 @@ class HomeFragment : Fragment() {
             }
         })
         initRecycler()
+        initPullToRefresh()
         filmsAdapter.addItems(filmsDataBase)
         viewModel.filmsListLiveData.observe(
             viewLifecycleOwner
         ) {
             filmsDataBase = it
+            filmsAdapter.addItems(it)
         }
 
     }
@@ -101,6 +103,14 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             val decorator = TopSpacingItemDecoration(7)
             addItemDecoration(decorator)
+        }
+    }
+
+    private fun initPullToRefresh() {
+        binding.pullToRefresh.setOnRefreshListener {
+            filmsAdapter.items.clear()
+            viewModel.filmsListLiveData//getFilms
+            binding.pullToRefresh.isRefreshing = false
         }
     }
 }
