@@ -18,7 +18,7 @@ class SettingsFragmentViewModel : ViewModel() {
         getCategoryProperty()
     }
 
-    fun getCategoryProperty() {
+    private fun getCategoryProperty() {
         categoryPropertyLifeData.value = interactor.getDefaultCategoryFromPreferences()
     }
 

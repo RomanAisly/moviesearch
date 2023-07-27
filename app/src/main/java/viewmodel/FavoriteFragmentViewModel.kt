@@ -7,7 +7,7 @@ import domain.Film
 import domain.Interactor
 import javax.inject.Inject
 
-//На данный момент это заглушка
+
 class FavoriteFragmentViewModel : ViewModel() {
     val filmsListLiveData: MutableLiveData<List<Film>> = MutableLiveData()
 
@@ -16,21 +16,7 @@ class FavoriteFragmentViewModel : ViewModel() {
 
     init {
         App.instance.dagger.inject(this)
-        interactor.getFilmsFromAPI(1, object : ApiCallback {
-            override fun onSuccess(films: List<Film>) {
-                filmsListLiveData.postValue(films)
-            }
 
-            override fun onFailure() {
-
-            }
-
-        })
-    }
-
-    interface ApiCallback {
-        fun onSuccess(films: List<Film>)
-        fun onFailure()
     }
 
 

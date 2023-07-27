@@ -9,7 +9,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import utils.Converter
-import viewmodel.FavoriteFragmentViewModel
 import viewmodel.HomeFragmentViewModel
 
 
@@ -20,25 +19,6 @@ class Interactor(
 ) {
 
     fun getFilmsFromAPI(page: Int, callback: HomeFragmentViewModel.ApiCallback) {
-        retrofitService.getFilms(getDefaultCategoryFromPreferences(), API.KEY, "ru-RU", page)
-            .enqueue(object : Callback<TmdbResultDTO> {
-                override fun onResponse(
-                    call: Call<TmdbResultDTO>,
-                    response: Response<TmdbResultDTO>
-                ) {
-                    response.body()
-                        ?.let { Converter.convertAPIListToDTOList(it.tmdbFilms) }
-                        ?.let { callback.onSuccess(it) }
-                }
-
-                override fun onFailure(call: Call<TmdbResultDTO>, t: Throwable) {
-                    callback.onFailure()
-                }
-            })
-    }
-
-    //Заглушка для списка Избранного
-    fun getFilmsFromAPI(page: Int, callback: FavoriteFragmentViewModel.ApiCallback) {
         retrofitService.getFilms(getDefaultCategoryFromPreferences(), API.KEY, "ru-RU", page)
             .enqueue(object : Callback<TmdbResultDTO> {
                 override fun onResponse(

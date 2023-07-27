@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviesearch.R
 import com.example.moviesearch.databinding.FragmentSettingsBinding
@@ -17,14 +16,14 @@ class SettingsFragment : Fragment() {
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
 
-    val viewModel by lazy {
+    private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(SettingsFragmentViewModel::class.java)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -37,14 +36,14 @@ class SettingsFragment : Fragment() {
             5
         )
 
-        viewModel.categoryPropertyLifeData.observe(viewLifecycleOwner, Observer<String> {
+        viewModel.categoryPropertyLifeData.observe(viewLifecycleOwner) {
             when (it) {
                 POPULAR_CATEGORY -> binding.radioGroup.check(R.id.radio_popular)
                 TOP_RATED_CATEGORY -> binding.radioGroup.check(R.id.radio_top_rated)
                 UPCOMING_CATEGORY -> binding.radioGroup.check(R.id.radio_upcoming)
                 NOW_PLAYING_CATEGORY -> binding.radioGroup.check(R.id.radio_now_playing)
             }
-        })
+        }
 
         binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
