@@ -26,7 +26,9 @@ class Interactor(
                     call: Call<TmdbResultDTO>,
                     response: Response<TmdbResultDTO>
                 ) {
-                    callback.onSuccess(Converter.convertAPIListToDTOList(response.body()!!.tmdbFilms))
+                    response.body()
+                        ?.let { Converter.convertAPIListToDTOList(it.tmdbFilms) }
+                        ?.let { callback.onSuccess(it) }
                 }
 
                 override fun onFailure(call: Call<TmdbResultDTO>, t: Throwable) {
@@ -43,7 +45,9 @@ class Interactor(
                     call: Call<TmdbResultDTO>,
                     response: Response<TmdbResultDTO>
                 ) {
-                    callback.onSuccess(Converter.convertAPIListToDTOList(response.body()!!.tmdbFilms))
+                    response.body()
+                        ?.let { Converter.convertAPIListToDTOList(it.tmdbFilms) }
+                        ?.let { callback.onSuccess(it) }
                 }
 
                 override fun onFailure(call: Call<TmdbResultDTO>, t: Throwable) {

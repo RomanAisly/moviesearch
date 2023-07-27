@@ -1,5 +1,6 @@
 package view.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -109,7 +110,7 @@ class HomeFragment : Fragment() {
     private fun initPullToRefresh() {
         binding.pullToRefresh.setOnRefreshListener {
             filmsAdapter.items.clear()
-            viewModel.filmsListLiveData//getFilms
+            context?.let { viewModel.initContext(it) }//getFilms
             binding.pullToRefresh.isRefreshing = false
         }
     }
