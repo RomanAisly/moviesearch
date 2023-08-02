@@ -30,6 +30,7 @@ class HomeFragmentViewModel : ViewModel(){
                     context.getString(R.string.toast_disconnected_internet),
                     Toast.LENGTH_SHORT
                 ).show()
+                filmsListLiveData.postValue(interactor.getFilmsFromDB())
             }
 
         })
