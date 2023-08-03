@@ -5,10 +5,10 @@ import android.database.Cursor
 import domain.Film
 
 class MainRepository(dbHelper: DBHelper) {
-    
+
     private val sqlDB = dbHelper.readableDatabase
     private var cursor: Cursor? = null
-    
+
     fun putToDB(film: Film) {
         val contVal = ContentValues()
         contVal.apply {
@@ -17,10 +17,10 @@ class MainRepository(dbHelper: DBHelper) {
             put(DBHelper.COLUMN_DESC, film.description)
             put(DBHelper.COLUMN_RATING, film.rating)
         }
-        
+
         sqlDB.insert(DBHelper.TABLE_NAME, null, contVal)
     }
-    
+
     fun getAllFromDB(): List<Film> {
         cursor = sqlDB.rawQuery("SELECT * FROM ${DBHelper.TABLE_NAME}", null)
         val result = mutableListOf<Film>()
@@ -30,12 +30,29 @@ class MainRepository(dbHelper: DBHelper) {
                 val poster = cursor?.getString(2)
                 val description = cursor?.getString(3)
                 val rating = cursor?.getDouble(4)
-                
+
                 result.add(Film(title!!, poster!!, description!!, rating!!, isInFavorites = true))
             } while (cursor?.moveToNext()!!)
-            
+
         }
         cursor?.close()
         return result
+    }
+
+    fun updateDB() {
+        sqlDB.update(
+            DBHelper.TABLE_NAME,
+            null,
+            DBHelper.COLUMN_ID + "=" + DBHelper.DATABASE_VERSION,
+            null
+        )
+    }
+
+    fun deleteDB() {
+        sqlDB.delete(
+            DBHelper.TABLE_NAME,
+            DBHelper.COLUMN_ID + "=" + DBHelper.DATABASE_VERSION,
+            null
+        )
     }
 }
