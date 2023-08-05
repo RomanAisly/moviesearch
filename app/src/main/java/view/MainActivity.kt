@@ -1,7 +1,6 @@
 package view
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -13,8 +12,7 @@ import view.fragments.*
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
-    private val binding: ActivityMainBinding
-        get() = _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_placeholder, fragment)
             .addToBackStack(null).commit()
     }
+
     //Кнопки навигации
     private fun initNavigation() {
 
@@ -48,15 +47,13 @@ class MainActivity : AppCompatActivity() {
                     val tag = "home"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment ?: HomeFragment(), tag)
-                    Toast.makeText(this, getString(R.string.toast_home), Toast.LENGTH_SHORT).show()
                     true
                 }
+
                 R.id.favorites -> {
                     val tag = "favorites"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment ?: FavoritesFragment(), tag)
-                    Toast.makeText(this, getString(R.string.toast_favorites), Toast.LENGTH_SHORT)
-                        .show()
                     true
                 }
 
@@ -65,8 +62,6 @@ class MainActivity : AppCompatActivity() {
                     val tag = "watch_later"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment ?: WatchLaterFragment(), tag)
-                    Toast.makeText(this, getString(R.string.toast_watchlater), Toast.LENGTH_SHORT)
-                        .show()
                     true
                 }
 
@@ -74,18 +69,22 @@ class MainActivity : AppCompatActivity() {
                     val tag = "selections"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment ?: SelectionsFragment(), tag)
-                    Toast.makeText(this, getString(R.string.toast_selections), Toast.LENGTH_SHORT)
-                        .show()
                     true
                 }
 
+                R.id.settings -> {
+                    val tag = "settings"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment ?: SettingsFragment(), tag)
+                    true
+                }
                 else -> false
             }
         }
 
     }
 
-        //Кнопка "назад" с alert диалогом
+    //Кнопка "назад" с alert диалогом
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount == 1) {
             AlertDialog.Builder(this)
