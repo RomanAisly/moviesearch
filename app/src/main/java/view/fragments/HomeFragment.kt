@@ -27,11 +27,11 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var filmsDataBase = listOf<Film>()
-        set(value) {
-            if (field == value) return
-            field = value
-            filmsAdapter.addItems(field)
-        }
+//        set(value) {
+//            if (field == value) return
+//            field = value
+//            filmsAdapter.addItems(field)
+//        }
     var filmsAdapter =
         FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
             override fun click(film: Film) {
@@ -101,7 +101,7 @@ class HomeFragment : Fragment() {
         binding.mainRecycler.apply {
             adapter = filmsAdapter
             layoutManager = LinearLayoutManager(requireContext())
-            val decorator = TopSpacingItemDecoration(7)
+            val decorator = TopSpacingItemDecoration(5)
             addItemDecoration(decorator)
         }
     }

@@ -16,4 +16,7 @@ class MainRepository(private val filmDao: FilmDao) {
         return filmDao.getCachedFilms()
     }
 
+//    fun addToFavorites(): List<Film> {
+//        return filmDao.favorites()
+//    }
 }

@@ -47,4 +47,5 @@ class Interactor(
     fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
 
     fun getFilmsFromDB(): List<Film> = repo.getAllFromDB()
+
 }

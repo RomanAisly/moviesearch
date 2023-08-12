@@ -14,4 +14,7 @@ interface FilmDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(list: List<Film>)
+
+//    @Query("SELECT * FROM cached_films WHERE favorites")
+//    fun favorites(): List<Film>
 }

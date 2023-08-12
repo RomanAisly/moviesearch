@@ -15,24 +15,26 @@ import view.rv_adapters.FilmListRecyclerAdapter
 import view.rv_adapters.TopSpacingItemDecoration
 import viewmodel.FavoriteFragmentViewModel
 
-class FavoritesFragment : Fragment() {
+class FavoritesFragment: Fragment() {
 
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(FavoriteFragmentViewModel::class.java)
     }
+
 
     private var _binding: FragmentFavoritesBinding? = null
     private val binding: FragmentFavoritesBinding
         get() = _binding!!
 
     private var filmsDataBase = listOf<Film>()
-//        set(value) {
-//            if (field == value) return
-//            field = value.filter { it.isInFavorites }
-//            filmsAdapter.addItems(field)
-//        }
+
+    //        set(value) {
+    //            if (field == value) return
+    //            field = value.filter { it.isInFavorites }
+    //            filmsAdapter.addItems(field)
+    //        }
     private var filmsAdapter =
-        FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
+        FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnItemClickListener {
             override fun click(film: Film) {
                 (requireActivity() as MainActivity).launchDetailsFragment(film)
             }
@@ -61,8 +63,8 @@ class FavoritesFragment : Fragment() {
             viewLifecycleOwner
         ) {
             filmsDataBase = it
+            filmsAdapter.addItems(it)
         }
-
     }
 
     private fun initRecycler() {
@@ -73,5 +75,4 @@ class FavoritesFragment : Fragment() {
             addItemDecoration(decorator)
         }
     }
-
 }

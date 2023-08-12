@@ -14,7 +14,7 @@ import view.fragments.SelectionsFragment
 import view.fragments.SettingsFragment
 import view.fragments.WatchLaterFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                     changeFragment(fragment ?: SettingsFragment(), tag)
                     true
                 }
+
                 else -> false
             }
         }
