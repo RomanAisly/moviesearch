@@ -6,8 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.moviesearch.R
 import com.example.moviesearch.databinding.ActivityMainBinding
-import domain.Film
-import view.fragments.*
+import data.entily.Film
+import view.fragments.DetailsFragment
+import view.fragments.FavoritesFragment
+import view.fragments.HomeFragment
+import view.fragments.SelectionsFragment
+import view.fragments.SettingsFragment
+import view.fragments.WatchLaterFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -6,11 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moviesearch.App
 import com.example.moviesearch.R
-import domain.Film
+import data.entily.Film
 import domain.Interactor
+import java.util.concurrent.Executors
 import javax.inject.Inject
 
-class HomeFragmentViewModel : ViewModel(){
+class HomeFragmentViewModel: ViewModel() {
     val filmsListLiveData: MutableLiveData<List<Film>> = MutableLiveData()
 
     @Inject
@@ -19,18 +20,20 @@ class HomeFragmentViewModel : ViewModel(){
     //Функция для Toast
     fun initContext(context: Context) {
         App.instance.dagger.inject(this)
-        interactor.getFilmsFromAPI(1, object : ApiCallback {
+        interactor.getFilmsFromAPI(1, object: ApiCallback {
             override fun onSuccess(films: List<Film>) {
                 filmsListLiveData.postValue(films)
             }
 
             override fun onFailure() {
+                Executors.newSingleThreadExecutor().execute {
+                    filmsListLiveData.postValue(interactor.getFilmsFromDB())
+                }
                 Toast.makeText(
                     context,
                     context.getString(R.string.toast_disconnected_internet),
                     Toast.LENGTH_SHORT
                 ).show()
-                filmsListLiveData.postValue(interactor.getFilmsFromDB())
             }
 
         })

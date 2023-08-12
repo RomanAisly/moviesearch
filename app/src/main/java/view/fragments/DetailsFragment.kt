@@ -11,7 +11,7 @@ import com.example.moviesearch.R
 import com.example.moviesearch.databinding.FragmentDetailsBinding
 import com.google.android.material.snackbar.Snackbar
 import data.ApiConstants
-import domain.Film
+import data.entily.Film
 
 class DetailsFragment : Fragment() {
 

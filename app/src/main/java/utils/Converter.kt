@@ -1,7 +1,7 @@
 package utils
 
+import data.entily.Film
 import data.entily.TmdbFilm
-import domain.Film
 
 object Converter {
     fun convertAPIListToDTOList(list: List<TmdbFilm>): List<Film> {

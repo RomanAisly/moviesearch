@@ -3,7 +3,7 @@ package viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moviesearch.App
-import domain.Film
+import data.entily.Film
 import domain.Interactor
 import javax.inject.Inject
 

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesearch.databinding.FragmentHomeBinding
-import domain.Film
+import data.entily.Film
 import utils.AnimationHelper
 import view.MainActivity
 import view.rv_adapters.FilmListRecyclerAdapter

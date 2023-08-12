@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide
 import com.example.moviesearch.R
 import com.example.moviesearch.databinding.FilmItemBinding
 import data.ApiConstants
-import domain.Film
+import data.entily.Film
 
 class FilmViewHolder(binding: FilmItemBinding) : RecyclerView.ViewHolder(binding.root) {
     private val title = binding.title
