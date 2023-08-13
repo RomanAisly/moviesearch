@@ -3,12 +3,12 @@ package viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moviesearch.App
-import domain.Film
+import data.entily.Film
 import domain.Interactor
 import javax.inject.Inject
 
 
-class FavoriteFragmentViewModel : ViewModel() {
+class FavoriteFragmentViewModel: ViewModel() {
     val filmsListLiveData: MutableLiveData<List<Film>> = MutableLiveData()
 
     @Inject
@@ -16,8 +16,6 @@ class FavoriteFragmentViewModel : ViewModel() {
 
     init {
         App.instance.dagger.inject(this)
-
     }
-
 
 }
