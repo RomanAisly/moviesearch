@@ -63,7 +63,6 @@ class FavoritesFragment: Fragment() {
             viewLifecycleOwner
         ) {
             filmsDataBase = it
-            filmsAdapter.addItems(it)
         }
     }
 

@@ -8,7 +8,7 @@ import domain.Interactor
 import javax.inject.Inject
 
 
-class FavoriteFragmentViewModel : ViewModel() {
+class FavoriteFragmentViewModel: ViewModel() {
     val filmsListLiveData: MutableLiveData<List<Film>> = MutableLiveData()
 
     @Inject
@@ -16,8 +16,6 @@ class FavoriteFragmentViewModel : ViewModel() {
 
     init {
         App.instance.dagger.inject(this)
-
     }
-
 
 }

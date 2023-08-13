@@ -20,6 +20,6 @@ data class Film(
     val description: String,
     @ColumnInfo(name = "vote_average")
     var rating: Double = 0.0,
-//    @ColumnInfo(name = "favorites")
+
     var isInFavorites: Boolean = false
 ): Parcelable
