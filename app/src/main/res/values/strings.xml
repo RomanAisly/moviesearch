@@ -24,6 +24,9 @@
     <string name="top_rated">Top Rated</string>
     <string name="upcoming">Upcoming</string>
     <string name="now_playing">Now Playing</string>
+    <string name="permisson_storage">No permission. Please, provide permission</string>
+    <string name="download_to_gallery">Saved to Gallery</string>
+    <string name="open_gallery">To Gallery</string>
 
 
 </resources>

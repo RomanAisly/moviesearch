@@ -25,6 +25,9 @@
     <string name="top_rated">Топ</string>
     <string name="upcoming">Скоро</string>
     <string name="now_playing">Сейчас смотрят</string>
+    <string name="permisson_storage">Нет разрешения. Пожалуйста, предоставьте разрешение</string>
+    <string name="download_to_gallery">Сохранено в галерею</string>
+    <string name="open_gallery">В галерею</string>
 
 
 </resources>

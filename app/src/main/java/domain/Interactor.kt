@@ -1,5 +1,6 @@
 package domain
 
+import androidx.lifecycle.LiveData
 import data.API
 import data.MainRepository
 import data.TmdbApi
@@ -31,7 +32,7 @@ class Interactor(
 
                     list?.let { repo.putToDB(list) }
 
-                    list?.let { callback.onSuccess(it) }
+                    list?.let { callback.onSuccess() }
                 }
 
                 override fun onFailure(call: Call<TmdbResultDTO>, t: Throwable) {
@@ -46,6 +47,6 @@ class Interactor(
 
     fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
 
-    fun getFilmsFromDB(): List<Film> = repo.getAllFromDB()
+    fun getFilmsFromDB(): LiveData<List<Film>> = repo.getAllFromDB()
 
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +18,7 @@ import view.rv_adapters.TopSpacingItemDecoration
 import viewmodel.HomeFragmentViewModel
 import java.util.Locale
 
-class HomeFragment : Fragment() {
+class HomeFragment: Fragment() {
 
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
@@ -27,13 +28,14 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var filmsDataBase = listOf<Film>()
-//        set(value) {
-//            if (field == value) return
-//            field = value
-//            filmsAdapter.addItems(field)
-//        }
+
+    //        set(value) {
+    //            if (field == value) return
+    //            field = value
+    //            filmsAdapter.addItems(field)
+    //        }
     var filmsAdapter =
-        FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
+        FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnItemClickListener {
             override fun click(film: Film) {
                 (requireActivity() as MainActivity).launchDetailsFragment(film)
             }
@@ -67,7 +69,7 @@ class HomeFragment : Fragment() {
             binding.searchView.isIconified = false
         }
 
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }
@@ -85,14 +87,20 @@ class HomeFragment : Fragment() {
                 return true
             }
         })
+
         initRecycler()
+
         initPullToRefresh()
+
         filmsAdapter.addItems(filmsDataBase)
-        viewModel.filmsListLiveData.observe(
-            viewLifecycleOwner
-        ) {
+
+        viewModel.filmsListLiveData.observe(viewLifecycleOwner) {
             filmsDataBase = it
             filmsAdapter.addItems(it)
+        }
+
+        viewModel.progressBar.observe(viewLifecycleOwner) {
+            binding.progressBar.isVisible = it
         }
 
     }
@@ -109,7 +117,7 @@ class HomeFragment : Fragment() {
     private fun initPullToRefresh() {
         binding.pullToRefresh.setOnRefreshListener {
             filmsAdapter.items.clear()
-            context?.let { viewModel.initContext(it) }//getFilms
+            context?.let { viewModel.initContext(it) } //getFilms
             binding.pullToRefresh.isRefreshing = false
         }
     }
