@@ -1,9 +1,9 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frag_details_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/frag_details_main"
     tools:context="view.fragments.DetailsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -33,10 +33,10 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/details_toolbar"
                 android:layout_width="match_parent"
-                app:titleTextColor="@color/white"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:titleTextColor="@color/white" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -47,22 +47,45 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:borderWidth="0dp"
         android:backgroundTint="#F3417D"
+        android:src="@drawable/ic_favorite_empty"
+        app:borderWidth="0dp"
         app:layout_anchor="@id/details_description"
         app:layout_anchorGravity="bottom|start"
-        android:src="@drawable/ic_favorite_empty"/>
+        app:tint="@color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/details_fab_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:backgroundTint="#0D9EDF"
+        android:src="@drawable/ic_share"
         app:borderWidth="0dp"
-        android:backgroundTint="#3BC1FD"
         app:layout_anchor="@id/details_description"
         app:layout_anchorGravity="bottom|end"
-        android:src="@drawable/ic_share"/>
+        app:tint="@color/white" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/details_fab_download_wp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="#36D33C"
+        android:src="@drawable/ic_cloud_download"
+        app:borderWidth="0dp"
+        app:layout_anchor="@id/details_description"
+        app:layout_anchorGravity="bottom|center"
+        app:tint="@color/white" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_for_fab"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:translationZ="10dp"
+        android:visibility="invisible"
+        app:layout_anchor="@id/details_fab_download_wp"
+        app:layout_anchorGravity="center" />
 
 
     <androidx.core.widget.NestedScrollView
@@ -73,21 +96,21 @@
         <TextView
             android:id="@+id/details_description"
             android:layout_width="wrap_content"
-            android:background="@color/white"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:padding="4dp"
+            android:textColor="@color/black"
             tools:text="@string/description" />
 
     </androidx.core.widget.NestedScrollView>
 
     <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/fragment_details_anim_loop"
         android:layout_width="350dp"
-        android:layout_gravity="bottom|center"
         android:layout_height="200dp"
+        android:layout_gravity="bottom|center"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/fragment_details_anim"
-        android:id="@+id/fragment_details_anim_loop"/>
+        app:lottie_rawRes="@raw/fragment_details_anim" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

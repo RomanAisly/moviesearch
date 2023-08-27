@@ -24,7 +24,7 @@ class HomeFragmentViewModel: ViewModel() {
         filmsListLiveData = interactor.getFilmsFromDB()
     }
 
-    //Функция для Toast
+    //Функция для Toast и ProgressBar
     fun initContext(context: Context) {
         progressBar.postValue(true)
         interactor.getFilmsFromAPI(1, object: ApiCallback {
