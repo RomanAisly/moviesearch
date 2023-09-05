@@ -28,11 +28,11 @@ class FavoritesFragment: Fragment() {
 
     private var filmsDataBase = listOf<Film>()
 
-    //        set(value) {
-    //            if (field == value) return
-    //            field = value.filter { it.isInFavorites }
-    //            filmsAdapter.addItems(field)
-    //        }
+            set(value) {
+                if (field == value) return
+                field = value.filter { it.isInFavorites }
+                filmsAdapter.addItems(field)
+            }
     private var filmsAdapter =
         FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnItemClickListener {
             override fun click(film: Film) {
