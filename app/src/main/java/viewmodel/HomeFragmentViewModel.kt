@@ -19,7 +19,6 @@ class HomeFragmentViewModel: ViewModel() {
         App.instance.dagger.inject(this)
         progressBar = interactor.progBarState
         filmsListData = interactor.getFilmsFromDB()
-        getFilms()
     }
 
     fun getFilms() {

@@ -33,12 +33,11 @@ class HomeFragment: Fragment() {
     private val binding get() = _binding!!
     private lateinit var scope: CoroutineScope
     private var filmsDataBase = listOf<Film>()
-
-            set(value) {
-                if (field == value) return
-                field = value
-                filmsAdapter.addItems(field)
-            }
+//        set(value) {
+//            if (field == value) return
+//            field = value
+//            filmsAdapter.addItems(field)
+//        }
     var filmsAdapter =
         FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnItemClickListener {
             override fun click(film: Film) {
@@ -69,8 +68,6 @@ class HomeFragment: Fragment() {
         initRecycler()
         initPullToRefresh()
         initSearchView()
-
-        filmsAdapter.addItems(filmsDataBase)
 
         scope = CoroutineScope(Dispatchers.IO).also { scope ->
             scope.launch {

@@ -74,13 +74,6 @@ class DetailsFragment: Fragment() {
             .placeholder(R.drawable.loading_image).error(R.drawable.internet_is_disconnected)
             .into(binding.detailsPoster)
         binding.detailsDescription.text = film.description
-        //Изменение внешнего вида кнопки "Добавить в избранное"
-        binding.detailsFabFavorites.setImageResource(
-            if (film.isInFavorites) {
-                R.drawable.ic_favorites_full
-            } else {
-                R.drawable.ic_favorite_empty
-            })
     }
 
     private fun snackFavorites() {
