@@ -11,6 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesearch.databinding.FragmentHomeBinding
 import data.entily.Film
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import utils.AnimationHelper
 import view.MainActivity
 import view.rv_adapters.FilmListRecyclerAdapter
@@ -26,34 +31,30 @@ class HomeFragment: Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var scope: CoroutineScope
     private var filmsDataBase = listOf<Film>()
-
-    //        set(value) {
-    //            if (field == value) return
-    //            field = value
-    //            filmsAdapter.addItems(field)
-    //        }
+//        set(value) {
+//            if (field == value) return
+//            field = value
+//            filmsAdapter.addItems(field)
+//        }
     var filmsAdapter =
         FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnItemClickListener {
             override fun click(film: Film) {
                 (requireActivity() as MainActivity).launchDetailsFragment(film)
             }
-
         })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        context?.let { viewModel.initContext(it) }
+        context?.let { viewModel.getFilms() }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+        savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,9 +63,56 @@ class HomeFragment: Fragment() {
         AnimationHelper.performFragmentCircularRevealAnimation(
             binding.fragmentHome,
             requireActivity(),
-            1
-        )
+            1)
 
+        initRecycler()
+        initPullToRefresh()
+        initSearchView()
+
+        scope = CoroutineScope(Dispatchers.IO).also { scope ->
+            scope.launch {
+                viewModel.filmsListData.collect {
+                    withContext(Dispatchers.Main) {
+                        filmsAdapter.addItems(it)
+                        filmsDataBase = it
+                    }
+                }
+            }
+        }
+
+        scope.launch {
+            for (element in viewModel.progressBar) {
+                launch(Dispatchers.Main) {
+                    binding.progressBar.isVisible = element
+                }
+            }
+        }
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        scope.cancel()
+    }
+
+    private fun initRecycler() {
+        binding.mainRecycler.apply {
+            adapter = filmsAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            val decorator = TopSpacingItemDecoration(5)
+            addItemDecoration(decorator)
+        }
+    }
+
+    private fun initPullToRefresh() {
+        binding.pullToRefresh.setOnRefreshListener {
+            filmsAdapter.items.clear()
+            context?.let { viewModel.getFilms() } //getFilms
+            binding.pullToRefresh.isRefreshing = false
+        }
+    }
+
+    private fun initSearchView() {
         binding.searchView.setOnClickListener {
             binding.searchView.isIconified = false
         }
@@ -87,38 +135,5 @@ class HomeFragment: Fragment() {
                 return true
             }
         })
-
-        initRecycler()
-
-        initPullToRefresh()
-
-        filmsAdapter.addItems(filmsDataBase)
-
-        viewModel.filmsListLiveData.observe(viewLifecycleOwner) {
-            filmsDataBase = it
-            filmsAdapter.addItems(it)
-        }
-
-        viewModel.progressBar.observe(viewLifecycleOwner) {
-            binding.progressBar.isVisible = it
-        }
-
-    }
-
-    private fun initRecycler() {
-        binding.mainRecycler.apply {
-            adapter = filmsAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-            val decorator = TopSpacingItemDecoration(5)
-            addItemDecoration(decorator)
-        }
-    }
-
-    private fun initPullToRefresh() {
-        binding.pullToRefresh.setOnRefreshListener {
-            filmsAdapter.items.clear()
-            context?.let { viewModel.initContext(it) } //getFilms
-            binding.pullToRefresh.isRefreshing = false
-        }
     }
 }

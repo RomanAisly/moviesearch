@@ -1,26 +1,35 @@
 package domain
 
-import androidx.lifecycle.LiveData
 import data.API
 import data.MainRepository
 import data.TmdbApi
 import data.entily.Film
 import data.entily.TmdbResultDTO
 import data.preferenes.PreferenceProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import utils.Converter
-import viewmodel.HomeFragmentViewModel
 
 
 class Interactor(
     private val repo: MainRepository,
     private val retrofitService: TmdbApi,
-    private val preferences: PreferenceProvider
-) {
+    private val preferences: PreferenceProvider) {
 
-    fun getFilmsFromAPI(page: Int, callback: HomeFragmentViewModel.ApiCallback) {
+    val scope: CoroutineScope = CoroutineScope(Dispatchers.IO)
+    var progBarState = Channel<Boolean>(Channel.CONFLATED)
+
+    fun getFilmsFromAPI(page: Int) {
+        scope.launch {
+            progBarState.send(true)
+        }
+
         retrofitService.getFilms(getDefaultCategoryFromPreferences(), API.KEY, "ru-RU", page)
             .enqueue(object: Callback<TmdbResultDTO> {
                 override fun onResponse(
@@ -30,13 +39,16 @@ class Interactor(
                     val list =
                         response.body()?.tmdbFilms?.let { Converter.convertAPIListToDTOList(it) }
 
-                    list?.let { repo.putToDB(list) }
-
-                    list?.let { callback.onSuccess() }
+                    scope.launch {
+                        list?.let { repo.putToDB(it) }
+                        progBarState.send(false)
+                    }
                 }
 
                 override fun onFailure(call: Call<TmdbResultDTO>, t: Throwable) {
-                    callback.onFailure()
+                    scope.launch {
+                        progBarState.send(false)
+                    }
                 }
             })
     }
@@ -47,6 +59,7 @@ class Interactor(
 
     fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
 
-    fun getFilmsFromDB(): LiveData<List<Film>> = repo.getAllFromDB()
+    fun getFilmsFromDB(): Flow<List<Film>> = repo.getAllFromDB()
+
 
 }
