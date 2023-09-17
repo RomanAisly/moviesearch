@@ -27,11 +27,12 @@ class FavoritesFragment: Fragment() {
         get() = _binding!!
 
     private var filmsDataBase = listOf<Film>()
-//        set(value) {
-//            if (field == value) return
-//            field = value.filter { it.isInFavorites }
-//            filmsAdapter.addItems(field)
-//        }
+
+    //        set(value) {
+    //            if (field == value) return
+    //            field = value.filter { it.isInFavorites }
+    //            filmsAdapter.addItems(field)
+    //        }
     private var filmsAdapter =
         FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnItemClickListener {
             override fun click(film: Film) {
@@ -42,7 +43,7 @@ class FavoritesFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-                             ): View {
+    ): View {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -54,15 +55,15 @@ class FavoritesFragment: Fragment() {
             binding.fragmentFavorites,
             requireActivity(),
             2
-                                                              )
+        )
 
         initRecycler()
         filmsAdapter.addItems(filmsDataBase)
-        viewModel.filmsListLiveData.observe(
-            viewLifecycleOwner
-                                           ) {
-            filmsDataBase = it
-        }
+        viewModel
+            .filmsListLiveData
+            .observe(viewLifecycleOwner) {
+                filmsDataBase = it
+            }
     }
 
     private fun initRecycler() {
