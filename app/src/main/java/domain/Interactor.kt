@@ -6,11 +6,10 @@ import data.TmdbApi
 import data.entily.Film
 import data.entily.TmdbResultDTO
 import data.preferenes.PreferenceProvider
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.rxjava3.subjects.BehaviorSubject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,13 +21,11 @@ class Interactor(
     private val retrofitService: TmdbApi,
     private val preferences: PreferenceProvider) {
 
-    val scope: CoroutineScope = CoroutineScope(Dispatchers.IO)
-    var progBarState = Channel<Boolean>(Channel.CONFLATED)
+    var progBarState: BehaviorSubject<Boolean> = BehaviorSubject.create()
 
     fun getFilmsFromAPI(page: Int) {
-        scope.launch {
-            progBarState.send(true)
-        }
+        progBarState.onNext(true)
+
 
         retrofitService.getFilms(getDefaultCategoryFromPreferences(), API.KEY, "ru-RU", page)
             .enqueue(object: Callback<TmdbResultDTO> {
@@ -39,16 +36,15 @@ class Interactor(
                     val list =
                         response.body()?.tmdbFilms?.let { Converter.convertAPIListToDTOList(it) }
 
-                    scope.launch {
-                        list?.let { repo.putToDB(it) }
-                        progBarState.send(false)
-                    }
+                    Completable.fromSingle<List<Film>> {
+                        list?.let { it1 -> repo.putToDB(it1) }
+                    }.subscribeOn(Schedulers.io())
+                        .subscribe()
+                    progBarState.onNext(false)
                 }
 
                 override fun onFailure(call: Call<TmdbResultDTO>, t: Throwable) {
-                    scope.launch {
-                        progBarState.send(false)
-                    }
+                    progBarState.onNext(false)
                 }
             })
     }
@@ -59,7 +55,7 @@ class Interactor(
 
     fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
 
-    fun getFilmsFromDB(): Flow<List<Film>> = repo.getAllFromDB()
+    fun getFilmsFromDB(): Observable<List<Film>> = repo.getAllFromDB()
 
 
 }

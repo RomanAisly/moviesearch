@@ -11,12 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesearch.databinding.FragmentHomeBinding
 import data.entily.Film
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import utils.AnimationHelper
+import utils.AutoDisposable
 import view.MainActivity
 import view.rv_adapters.FilmListRecyclerAdapter
 import view.rv_adapters.TopSpacingItemDecoration
@@ -29,15 +27,17 @@ class HomeFragment: Fragment() {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
     }
 
+    private val autoDispose = AutoDisposable()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var scope: CoroutineScope
     private var filmsDataBase = listOf<Film>()
-//        set(value) {
-//            if (field == value) return
-//            field = value
-//            filmsAdapter.addItems(field)
-//        }
+
+
+    //        set(value) {
+    //            if (field == value) return
+    //            field = value
+    //            filmsAdapter.addItems(field)
+    //        }
     var filmsAdapter =
         FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnItemClickListener {
             override fun click(film: Film) {
@@ -48,6 +48,7 @@ class HomeFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context?.let { viewModel.getFilms() }
+        autoDispose.bindTo(lifecycle)
     }
 
     override fun onCreateView(
@@ -69,30 +70,24 @@ class HomeFragment: Fragment() {
         initPullToRefresh()
         initSearchView()
 
-        scope = CoroutineScope(Dispatchers.IO).also { scope ->
-            scope.launch {
-                viewModel.filmsListData.collect {
-                    withContext(Dispatchers.Main) {
-                        filmsAdapter.addItems(it)
-                        filmsDataBase = it
-                    }
-                }
-            }
-        }
-
-        scope.launch {
-            for (element in viewModel.progressBar) {
-                launch(Dispatchers.Main) {
-                    binding.progressBar.isVisible = element
-                }
-            }
-        }
+        viewModel.filmsListData
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { list ->
+                filmsAdapter.addItems(list)
+                filmsDataBase = list
+            }.dispose()
+        
+        viewModel.progressBar
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { binding.progressBar.isVisible = it }.dispose()
 
     }
-
-    override fun onStop() {
-        super.onStop()
-        scope.cancel()
+    //Нужен ли этот мето?
+    override fun onDestroy() {
+        super.onDestroy()
+        autoDispose.onDestroy()
     }
 
     private fun initRecycler() {
