@@ -15,6 +15,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import utils.AnimationHelper
 import utils.AutoDisposable
+import utils.addTo
 import view.MainActivity
 import view.rv_adapters.FilmListRecyclerAdapter
 import view.rv_adapters.TopSpacingItemDecoration
@@ -53,7 +54,8 @@ class HomeFragment: Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -64,7 +66,8 @@ class HomeFragment: Fragment() {
         AnimationHelper.performFragmentCircularRevealAnimation(
             binding.fragmentHome,
             requireActivity(),
-            1)
+            1
+        )
 
         initRecycler()
         initPullToRefresh()
@@ -76,14 +79,15 @@ class HomeFragment: Fragment() {
             .subscribe { list ->
                 filmsAdapter.addItems(list)
                 filmsDataBase = list
-            }.isDisposed
-        
+            }.addTo(autoDispose)
+
         viewModel.progressBar
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { binding.progressBar.isVisible = it }.isDisposed
+            .subscribe { binding.progressBar.isVisible = it }.addTo(autoDispose)
 
     }
+
     //Нужен ли этот мето?
     override fun onDestroy() {
         super.onDestroy()

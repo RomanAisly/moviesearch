@@ -14,7 +14,7 @@ class AutoDisposable: LifecycleObserver {
         compDispose = CompositeDisposable()
     }
 
-    private fun add(disposable: Disposable) {
+    fun add(disposable: Disposable) {
         if (::compDispose.isInitialized) {
             compDispose.add(disposable)
         } else {
@@ -26,8 +26,8 @@ class AutoDisposable: LifecycleObserver {
     fun onDestroy() {
         compDispose.dispose()
     }
+}
 
-    fun Disposable.addTo(autoDisposable: AutoDisposable) {
-        autoDisposable.add(this)
-    }
+fun Disposable.addTo(autoDisposable: AutoDisposable) {
+    autoDisposable.add(this)
 }
