@@ -76,12 +76,12 @@ class HomeFragment: Fragment() {
             .subscribe { list ->
                 filmsAdapter.addItems(list)
                 filmsDataBase = list
-            }.dispose()
+            }.isDisposed
         
         viewModel.progressBar
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { binding.progressBar.isVisible = it }.dispose()
+            .subscribe { binding.progressBar.isVisible = it }.isDisposed
 
     }
     //Нужен ли этот мето?
