@@ -24,7 +24,5 @@ class DomainModule(val context: Context) {
     fun provideInteractor(
         repository: MainRepository,
         tmdbApi: TmdbApi,
-        preferenceProvider: PreferenceProvider
-    ) =
-        Interactor(repo = repository, retrofitService = tmdbApi, preferences = preferenceProvider)
+        preferenceProvider: PreferenceProvider) = Interactor(repo = repository, retrofitService = tmdbApi, preferences = preferenceProvider)
 }

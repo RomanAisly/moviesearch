@@ -28,6 +28,7 @@
     <string name="permisson_storage">Нет разрешения. Пожалуйста, предоставьте разрешение</string>
     <string name="download_to_gallery">Сохранено в галерею</string>
     <string name="open_gallery">В галерею</string>
+    <string name="toast_onerror_search">Что-то пошло не так</string>
 
 
 </resources>
