@@ -27,6 +27,7 @@
     <string name="permisson_storage">No permission. Please, provide permission</string>
     <string name="download_to_gallery">Saved to Gallery</string>
     <string name="open_gallery">To Gallery</string>
+    <string name="toast_onerror_search">Something went wrong</string>
 
 
 </resources>

@@ -25,8 +25,6 @@ class Interactor(
 
     fun getFilmsFromAPI(page: Int) {
         progBarState.onNext(true)
-
-
         retrofitService.getFilms(getDefaultCategoryFromPreferences(), API.KEY, "ru-RU", page)
             .enqueue(object: Callback<TmdbResultDTO> {
                 override fun onResponse(
@@ -48,6 +46,12 @@ class Interactor(
                 }
             })
     }
+
+    fun getSearchResultsFromApi(search: String): Observable<List<Film>> =
+        retrofitService.getFilmFromSearch(API.KEY, "ru-RU", search, 1)
+            .map {
+                Converter.convertAPIListToDTOList(it.tmdbFilms)
+            }
 
     fun saveDefaultCategoryToPreferences(category: String) {
         preferences.saveDefaultCategory(category)

@@ -20,7 +20,7 @@ import javax.inject.Singleton
 
 interface AppComponent {
     fun inject(homeFragVM: HomeFragmentViewModel)
-    //заглушка
+
     fun inject(favorFragVM: FavoriteFragmentViewModel)
 
     fun inject(settingsFragVM: SettingsFragmentViewModel)
