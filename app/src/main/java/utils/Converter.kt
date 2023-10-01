@@ -1,7 +1,7 @@
 package utils
 
+import com.example.remote_module.entity.TmdbFilm
 import data.entily.Film
-import data.entily.TmdbFilm
 
 object Converter {
     fun convertAPIListToDTOList(list: List<TmdbFilm>): List<Film> {

@@ -1,22 +1,17 @@
 package di
 
+import com.example.remote_module.RemoteProvider
 import dagger.Component
 import di.modules.DatabaseModule
 import di.modules.DomainModule
-import di.modules.RemoteModule
 import viewmodel.FavoriteFragmentViewModel
 import viewmodel.HomeFragmentViewModel
 import viewmodel.SettingsFragmentViewModel
 import javax.inject.Singleton
 
 @Singleton
-@Component(
-    modules = [
-        RemoteModule::class,
-        DatabaseModule::class,
-        DomainModule::class
-    ]
-)
+@Component(dependencies = [RemoteProvider::class],
+    modules = [DatabaseModule::class, DomainModule::class])
 
 interface AppComponent {
     fun inject(homeFragVM: HomeFragmentViewModel)

@@ -5,6 +5,8 @@ plugins {
     id 'kotlin-kapt'
 }
 
+apply from: "$project.rootDir/versions.gradle"
+
 android {
     namespace 'com.example.moviesearch'
     compileSdk 33
@@ -47,6 +49,7 @@ dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
+    implementation project(path: ':remote_module')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -58,21 +61,18 @@ dependencies {
     implementation 'com.airbnb.android:lottie:6.1.0'
     //Coroutines
     implementation('org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2')
-    //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11'
     //Dagger
-    implementation 'com.google.dagger:dagger:2.47'
-    kapt 'com.google.dagger:dagger-compiler:2.47'
+    implementation ("$dagger")
+    kapt ("$daggerCompiler")
     //Room
     implementation "androidx.room:room-runtime:2.5.2"
     implementation "androidx.room:room-ktx:2.5.2"
     implementation "androidx.room:room-rxjava3:2.5.2"
     kapt "androidx.room:room-compiler:2.5.2"
     //RXJava
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.10'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.7'
     implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
-    implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
+    //Remote Module
+    implementation project(":remote_module")
 }

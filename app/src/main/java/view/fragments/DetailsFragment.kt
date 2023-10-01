@@ -18,8 +18,8 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.moviesearch.R
 import com.example.moviesearch.databinding.FragmentDetailsBinding
+import com.example.remote_module.entity.ApiConstants
 import com.google.android.material.snackbar.Snackbar
-import data.ApiConstants
 import data.entily.Film
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -1,10 +1,7 @@
-package di.modules
+package com.example.remote_module
 
-import com.example.moviesearch.BuildConfig
 import dagger.Module
 import dagger.Provides
-import data.ApiConstants
-import data.TmdbApi
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -29,7 +26,7 @@ class RemoteModule {
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(ApiConstants.BASE_URL)
+        .baseUrl(com.example.remote_module.entity.ApiConstants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .client(okHttpClient)
