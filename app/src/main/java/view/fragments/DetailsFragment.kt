@@ -27,6 +27,7 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import view.notifications.NotificationHelper
 import viewmodel.DetailsFragmentViewModel
 
 class DetailsFragment: Fragment() {
@@ -43,7 +44,7 @@ class DetailsFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-                             ): View {
+    ): View {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -57,6 +58,9 @@ class DetailsFragment: Fragment() {
         share()
         binding.detailsFabDownloadWp.setOnClickListener {
             performAsyncLoadofPoster()
+        }
+        binding.detailsFabWatchLatter.setOnClickListener {
+            NotificationHelper.createNotify(requireContext(), film)
         }
     }
 
