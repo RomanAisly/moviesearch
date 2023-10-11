@@ -26,7 +26,7 @@ class App: Application() {
             .domainModule(DomainModule(this))
             .build()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val name = "WatchLaterChannel"
             val descriptionText = "FilmsSearch notification Channel"
             val importance = NotificationManager.IMPORTANCE_DEFAULT

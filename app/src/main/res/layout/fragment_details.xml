@@ -87,6 +87,7 @@
         android:backgroundTint="#FAE427"
         android:src="@drawable/ic_notify"
         android:translationY="24dp"
+        android:translationX="100dp"
         app:borderWidth="0dp"
         app:layout_anchor="@id/details_description"
         app:layout_anchorGravity="bottom|start"

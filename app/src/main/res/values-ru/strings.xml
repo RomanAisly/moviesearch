@@ -32,6 +32,7 @@
     <string name="toast_battery_is_low">Низкий заряд батареи</string>
     <string name="toast_charging_connected">Зарядка подключена</string>
     <string name="toast_charging_disconnected">Зарядка отключена</string>
+    <string name="notify_title_of_film">Не забудьте посмотреть</string>
 
 
 </resources>
