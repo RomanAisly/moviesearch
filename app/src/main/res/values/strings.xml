@@ -28,6 +28,10 @@
     <string name="download_to_gallery">Saved to Gallery</string>
     <string name="open_gallery">To Gallery</string>
     <string name="toast_onerror_search">Something went wrong</string>
+    <string name="toast_battery_is_low">Battery is low</string>
+    <string name="toast_charging_connected">Charging connected</string>
+    <string name="toast_charging_disconnected">Charging disconnected</string>
+    <string name="notify_title_of_film">Don\'t forget to watch</string>
 
 
 </resources>

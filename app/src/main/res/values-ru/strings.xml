@@ -29,6 +29,10 @@
     <string name="download_to_gallery">Сохранено в галерею</string>
     <string name="open_gallery">В галерею</string>
     <string name="toast_onerror_search">Что-то пошло не так</string>
+    <string name="toast_battery_is_low">Низкий заряд батареи</string>
+    <string name="toast_charging_connected">Зарядка подключена</string>
+    <string name="toast_charging_disconnected">Зарядка отключена</string>
+    <string name="notify_title_of_film">Не забудьте посмотреть</string>
 
 
 </resources>

@@ -38,12 +38,6 @@ class HomeFragment: Fragment() {
     private val binding get() = _binding!!
     private var filmsDataBase = listOf<Film>()
 
-
-    //        set(value) {
-    //            if (field == value) return
-    //            field = value
-    //            filmsAdapter.addItems(field)
-    //        }
     var filmsAdapter =
         FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnItemClickListener {
             override fun click(film: Film) {

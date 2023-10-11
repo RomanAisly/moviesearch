@@ -25,14 +25,8 @@ class FavoritesFragment: Fragment() {
     private var _binding: FragmentFavoritesBinding? = null
     private val binding: FragmentFavoritesBinding
         get() = _binding!!
-
     private var filmsDataBase = listOf<Film>()
 
-    //        set(value) {
-    //            if (field == value) return
-    //            field = value.filter { it.isInFavorites }
-    //            filmsAdapter.addItems(field)
-    //        }
     private var filmsAdapter =
         FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnItemClickListener {
             override fun click(film: Film) {
