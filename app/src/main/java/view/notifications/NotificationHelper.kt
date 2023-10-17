@@ -2,13 +2,17 @@ package view.notifications
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlarmManager
+import android.app.DatePickerDialog
 import android.app.PendingIntent
+import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
@@ -19,7 +23,9 @@ import com.bumptech.glide.request.transition.Transition
 import com.example.moviesearch.R
 import com.example.remote_module.entity.ApiConstants
 import data.entily.Film
+import recisers.BroadcastReminder
 import view.MainActivity
+import java.util.Calendar
 
 object NotificationHelper {
 
@@ -75,5 +81,39 @@ object NotificationHelper {
             })
 
         notifManCom.notify(film.id, notifBuilder.build())
+    }
+
+    fun notificationSet(context: Context, film: Film) {
+        val calendar = Calendar.getInstance()
+        val currentYear = Calendar.YEAR
+        val currentMonth = Calendar.MONTH
+        val currentDay = Calendar.DAY_OF_MONTH
+        val currentHour = Calendar.HOUR_OF_DAY
+        val currentMinute = Calendar.MINUTE
+
+        DatePickerDialog(context, { _, dpdYear, dpdMonth, dayofMonth ->
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hourofDay, pickerMinute ->
+                val pickedDateTime = Calendar.getInstance()
+                pickedDateTime.set(
+                    dpdYear, dpdMonth, dayofMonth, hourofDay, pickerMinute, 0
+                )
+                val dateTimeInMillis = pickedDateTime.timeInMillis
+                watchLaterEvent(context, dateTimeInMillis, film)
+            }
+            TimePickerDialog(context, timeSetListener, currentHour, currentMinute, true).show()
+        },
+            currentYear, currentMonth, currentDay).show()
+    }
+
+    private fun watchLaterEvent(context: Context, dateTimeInMillis: Long, film: Film) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(film.title, null, context, BroadcastReminder::class.java)
+        val bundle = Bundle()
+        bundle.putParcelable(NotificationConstants.FILM_KEY, film)
+        intent.putExtra(NotificationConstants.FILM_BUNDLE_KEY, bundle)
+        val pendInt =
+            PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, dateTimeInMillis, pendInt)
     }
 }
