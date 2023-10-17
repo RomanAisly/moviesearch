@@ -31,25 +31,6 @@ class Interactor(
                     progBarState.onNext(false)
                     repo.putToDB(it)
                 })
-//            (object: Callback<TmdbResultDTO> {
-//                override fun onResponse(
-//                    call: Call<TmdbResultDTO>,
-//                    response: Response<TmdbResultDTO>) {
-//
-//                    val list =
-//                        response.body()?.tmdbFilms?.let { Converter.convertAPIListToDTOList(it) }
-//
-//                    Completable.fromSingle<List<Film>> {
-//                        list?.let { it1 -> repo.putToDB(it1) }
-//                    }.subscribeOn(Schedulers.io())
-//                        .subscribe()
-//                    progBarState.onNext(false)
-//                }
-//
-//                override fun onFailure(call: Call<TmdbResultDTO>, t: Throwable) {
-//                    progBarState.onNext(false)
-//                }
-//            })
     }
 
     fun getSearchResultsFromApi(search: String): Observable<List<Film>> =
@@ -65,6 +46,5 @@ class Interactor(
     fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
 
     fun getFilmsFromDB(): Observable<List<Film>> = repo.getAllFromDB()
-
 
 }

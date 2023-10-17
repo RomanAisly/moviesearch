@@ -13,7 +13,6 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -31,16 +30,10 @@ object NotificationHelper {
 
     fun createNotify(context: Context, film: Film) {
         val notifIntent = Intent(context, MainActivity::class.java)
-        val penIntent: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            PendingIntent.getActivity(context,
-                0,
-                notifIntent,
-                PendingIntent.FLAG_MUTABLE)
+        val penIntent: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            PendingIntent.getActivity(context, 0, notifIntent, PendingIntent.FLAG_MUTABLE)
         } else {
-            PendingIntent.getActivity(context,
-                0,
-                notifIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getActivity(context, 0, notifIntent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
 
         val notifBuilder =
@@ -61,7 +54,6 @@ object NotificationHelper {
             .placeholder(R.drawable.loading_image)
             .error(R.drawable.internet_is_disconnected)
             .into(object: CustomTarget<Bitmap>() {
-                @RequiresApi(Build.VERSION_CODES.TIRAMISU)
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     notifBuilder.setStyle(NotificationCompat.BigPictureStyle().bigPicture(resource))
                     if (ActivityCompat.checkSelfPermission(context,
@@ -85,11 +77,11 @@ object NotificationHelper {
 
     fun notificationSet(context: Context, film: Film) {
         val calendar = Calendar.getInstance()
-        val currentYear = Calendar.YEAR
-        val currentMonth = Calendar.MONTH
-        val currentDay = Calendar.DAY_OF_MONTH
-        val currentHour = Calendar.HOUR_OF_DAY
-        val currentMinute = Calendar.MINUTE
+        val currentYear = calendar.get(Calendar.YEAR)
+        val currentMonth = calendar.get(Calendar.MONTH)
+        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+        val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+        val currentMinute = calendar.get(Calendar.MINUTE)
 
         DatePickerDialog(context, { _, dpdYear, dpdMonth, dayofMonth ->
             val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hourofDay, pickerMinute ->
@@ -111,9 +103,14 @@ object NotificationHelper {
         val bundle = Bundle()
         bundle.putParcelable(NotificationConstants.FILM_KEY, film)
         intent.putExtra(NotificationConstants.FILM_BUNDLE_KEY, bundle)
-        val pendInt =
+        val pendInt: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_MUTABLE)
+        } else {
             PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, dateTimeInMillis, pendInt)
     }
+
 }
