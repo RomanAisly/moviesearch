@@ -30,7 +30,7 @@ object NotificationHelper {
 
     fun createNotify(context: Context, film: Film) {
         val notifIntent = Intent(context, MainActivity::class.java)
-        val penIntent: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        val penIntent: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             PendingIntent.getActivity(context, 0, notifIntent, PendingIntent.FLAG_MUTABLE)
         } else {
             PendingIntent.getActivity(context, 0, notifIntent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -103,7 +103,7 @@ object NotificationHelper {
         val bundle = Bundle()
         bundle.putParcelable(NotificationConstants.FILM_KEY, film)
         intent.putExtra(NotificationConstants.FILM_BUNDLE_KEY, bundle)
-        val pendInt: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        val pendInt: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_MUTABLE)
         } else {
             PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)

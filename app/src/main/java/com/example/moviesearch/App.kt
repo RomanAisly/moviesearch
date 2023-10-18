@@ -26,11 +26,11 @@ class App: Application() {
             .domainModule(DomainModule(this))
             .build()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val name = "WatchLaterChannel"
-            val descriptionText = "FilmsSearch notification Channel"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val notifChannel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val name = "WatchLaterChannel"
+                val descriptionText = "FilmsSearch notification Channel"
+                val importance = NotificationManager.IMPORTANCE_DEFAULT
+                val notifChannel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
             }
             val notifManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
