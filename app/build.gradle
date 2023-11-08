@@ -37,6 +37,32 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    flavorDimensions "version"
+    productFlavors {
+        basic {
+            dimension "version"
+            applicationIdSuffix ".basic"
+            versionNameSuffix "-basic"
+        }
+        pro {
+            dimension "version"
+            applicationIdSuffix ".pro"
+            versionNameSuffix "-pro"
+        }
+    }
+    sourceSets {
+        basic {
+            java {
+                srcDirs 'src\\basic\\java'
+            }
+        }
+        pro {
+            java {
+                srcDirs 'src\\pro\\java'
+            }
+        }
+
+    }
 }
 
 
@@ -62,8 +88,8 @@ dependencies {
     //Coroutines
     implementation('org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2')
     //Dagger
-    implementation ("$dagger")
-    kapt ("$daggerCompiler")
+    implementation("$dagger")
+    kapt("$daggerCompiler")
     //Room
     implementation "androidx.room:room-runtime:2.5.2"
     implementation "androidx.room:room-ktx:2.5.2"

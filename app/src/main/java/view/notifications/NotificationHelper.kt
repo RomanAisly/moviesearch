@@ -20,10 +20,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.moviesearch.R
+import com.example.moviesearch.view.MainActivity
 import com.example.remote_module.entity.ApiConstants
 import data.entily.Film
 import recisers.BroadcastReminder
-import view.MainActivity
 import java.util.Calendar
 
 object NotificationHelper {
