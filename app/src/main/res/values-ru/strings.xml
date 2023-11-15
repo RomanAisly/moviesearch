@@ -33,6 +33,9 @@
     <string name="toast_charging_connected">Зарядка подключена</string>
     <string name="toast_charging_disconnected">Зарядка отключена</string>
     <string name="notify_title_of_film">Не забудьте посмотреть</string>
+    <string name="toast_available_pro">Доступно только в версии Pro</string>
+    <string name="watch_the_movie_promo">Посмотрите фильм</string>
+    <string name="watch_promo">Смотреть</string>
 
 
 </resources>

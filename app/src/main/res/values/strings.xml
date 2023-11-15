@@ -32,6 +32,9 @@
     <string name="toast_charging_connected">Charging connected</string>
     <string name="toast_charging_disconnected">Charging disconnected</string>
     <string name="notify_title_of_film">Don\'t forget to watch</string>
+    <string name="toast_available_pro">Only available in the Pro-version</string>
+    <string name="watch_the_movie_promo">Watch the Movie</string>
+    <string name="watch_promo">Watch</string>
 
 
 </resources>

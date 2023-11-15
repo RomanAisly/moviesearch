@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesearch.R
 import com.example.moviesearch.databinding.FragmentHomeBinding
+import com.example.moviesearch.view.MainActivity
 import data.entily.Film
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -20,7 +21,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import utils.AnimationHelper
 import utils.AutoDisposable
 import utils.addTo
-import view.MainActivity
 import view.rv_adapters.FilmListRecyclerAdapter
 import view.rv_adapters.TopSpacingItemDecoration
 import viewmodel.HomeFragmentViewModel
