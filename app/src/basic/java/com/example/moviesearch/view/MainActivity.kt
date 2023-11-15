@@ -4,12 +4,16 @@ import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.moviesearch.App
 import com.example.moviesearch.R
 import com.example.moviesearch.databinding.ActivityMainBinding
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import data.entily.Film
 import recisers.BroadcastConnectionChecker
 import view.fragments.DetailsFragment
@@ -29,6 +33,7 @@ class MainActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         initNavigation()
+        initPromoView()
 
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_placeholder, HomeFragment())
@@ -64,7 +69,9 @@ class MainActivity: AppCompatActivity() {
                 }
 
                 R.id.favorites -> {
-                    Toast.makeText(this, getString(R.string.toast_available_pro), Toast.LENGTH_SHORT)
+                    Toast.makeText(this,
+                        getString(R.string.toast_available_pro),
+                        Toast.LENGTH_SHORT)
                         .show()
                     true
                 }
@@ -77,7 +84,9 @@ class MainActivity: AppCompatActivity() {
                 }
 
                 R.id.selections -> {
-                    Toast.makeText(this, getString(R.string.toast_available_pro), Toast.LENGTH_SHORT)
+                    Toast.makeText(this,
+                        getString(R.string.toast_available_pro),
+                        Toast.LENGTH_SHORT)
                         .show()
                     true
                 }
@@ -123,4 +132,29 @@ class MainActivity: AppCompatActivity() {
         unregisterReceiver(reciver)
     }
 
+    private fun initPromoView() {
+        if (!App.instance.isPromoShown) {
+            val firebaseRemConf = FirebaseRemoteConfig.getInstance()
+            val firebaseRemoteSettings =
+                FirebaseRemoteConfigSettings.Builder().setMinimumFetchIntervalInSeconds(0).build()
+            firebaseRemConf.setConfigSettingsAsync(firebaseRemoteSettings)
+            firebaseRemConf.fetch().addOnCompleteListener {
+                if (it.isSuccessful) {
+                    firebaseRemConf.activate()
+                    val filmLink = firebaseRemConf.getString("film_link")
+                    if (filmLink.isNotBlank()) {
+                        App.instance.isPromoShown = true
+                        binding.promoView.apply {
+                            visibility = View.VISIBLE
+                            animate().setDuration(1500).alpha(1F).start()
+                            setLinkForPoster(filmLink)
+                            watchButton.setOnClickListener {
+                                visibility = View.GONE
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

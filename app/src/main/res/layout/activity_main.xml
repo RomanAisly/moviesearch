@@ -2,11 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shape_background_main_second"
-    tools:context="MainActivity">
+    tools:context=".view.MainActivity">
 
+    <view.customeviews.PromoView
+        android:id="@+id/promo_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="@drawable/shape_background_main_second"
+        android:translationZ="10dp"
+        android:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/fragment_placeholder"
