@@ -20,6 +20,6 @@ class PromoView(context: Context, attributeSet: AttributeSet?): FrameLayout(cont
             .placeholder(R.drawable.loading_image)
             .error(R.drawable.internet_is_disconnected)
             .centerCrop()
-            .into(binding.poster)
+            .into(binding.posterPromo)
     }
 }
