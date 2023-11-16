@@ -67,6 +67,7 @@ class DetailsFragment: Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         scope.cancel()
+        _binding = null
     }
 
 

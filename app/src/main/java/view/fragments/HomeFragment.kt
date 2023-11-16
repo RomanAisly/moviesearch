@@ -91,6 +91,7 @@ class HomeFragment: Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         autoDispose.onDestroy()
+        _binding = null
     }
 
     private fun initRecycler() {

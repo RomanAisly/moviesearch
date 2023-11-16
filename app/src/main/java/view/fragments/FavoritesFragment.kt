@@ -68,4 +68,9 @@ class FavoritesFragment: Fragment() {
             addItemDecoration(decorator)
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

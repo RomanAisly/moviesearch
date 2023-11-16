@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.moviesearch.databinding.FragmentWatchLaterBinding
 import utils.AnimationHelper
 
-class WatchLaterFragment : Fragment() {
+class WatchLaterFragment: Fragment() {
     private var _binding: FragmentWatchLaterBinding? = null
     private val binding: FragmentWatchLaterBinding
         get() = _binding!!
@@ -34,5 +34,9 @@ class WatchLaterFragment : Fragment() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
 }

@@ -55,6 +55,10 @@ class SettingsFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
     companion object {
         const val POPULAR_CATEGORY = "popular"
